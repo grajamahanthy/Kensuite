@@ -15,13 +15,15 @@
     <KeywordQuestion>
       <Id>1648</Id>
       <Title>Keyword</Title>
+      <Type>text</Type>
       <Watermark>Enter Job Title Or Keywords</Watermark>
     </KeywordQuestion>
     <KeywordQuestion>
       <Id>53209</Id>
       <Title>Location</Title>
+      <Type>location</Type>
       <Watermark>Location</Watermark>
-    </KeywordQuestion>
+    </KeywordQuestion>   
   </SearchKeyword>
   <SearchResult>
     <ResultQuestion>

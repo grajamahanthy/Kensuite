@@ -7,6 +7,10 @@
       <Title>JobTitle</Title>
     </FilterQuestion>
     <FilterQuestion>
+      <Id>59081</Id>
+      <Title>Job Role</Title>
+    </FilterQuestion>
+    <FilterQuestion>
       <Id>53209</Id>
       <Title>Location</Title>
     </FilterQuestion>
@@ -15,12 +19,20 @@
     <KeywordQuestion>
       <Id>1648</Id>
       <Title>Keyword</Title>
+      <Type>text</Type>
       <Watermark>Enter Job Title Or Keywords</Watermark>
     </KeywordQuestion>
     <KeywordQuestion>
+      <Id>53210</Id>
+      <Title>State</Title>
+      <Type>singleselect</Type>
+      <Watermark>State</Watermark>
+    </KeywordQuestion>
+    <KeywordQuestion>
       <Id>53209</Id>
-      <Title>Location</Title>
-      <Watermark>Location</Watermark>
+      <Title>City</Title>
+      <Type>singleselect</Type>
+      <Watermark>City</Watermark>
     </KeywordQuestion>
   </SearchKeyword>
   <SearchResult>

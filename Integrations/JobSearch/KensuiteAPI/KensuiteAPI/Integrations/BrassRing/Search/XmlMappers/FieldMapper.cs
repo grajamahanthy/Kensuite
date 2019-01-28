@@ -127,6 +127,8 @@ namespace KensuiteAPI.XmlMappers
 
         private string titleField;
 
+        private string typeField;
+
         private string watermarkField;
 
         /// <remarks/>
@@ -152,6 +154,19 @@ namespace KensuiteAPI.XmlMappers
             set
             {
                 this.titleField = value;
+            }
+        }
+
+        /// <remarks/>
+        public string Type
+        {
+            get
+            {
+                return this.typeField;
+            }
+            set
+            {
+                this.typeField = value;
             }
         }
 
