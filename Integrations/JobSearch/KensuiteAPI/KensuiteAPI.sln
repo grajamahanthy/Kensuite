@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KensuiteAPI", "KensuiteAPI\KensuiteAPI.csproj", "{55034941-92ED-483A-99CD-FE24E184D9FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55034941-92ED-483A-99CD-FE24E184D9FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55034941-92ED-483A-99CD-FE24E184D9FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55034941-92ED-483A-99CD-FE24E184D9FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55034941-92ED-483A-99CD-FE24E184D9FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9D00C234-E53F-45BC-96F8-C42E3F66A133}
+	EndGlobalSection
+EndGlobal

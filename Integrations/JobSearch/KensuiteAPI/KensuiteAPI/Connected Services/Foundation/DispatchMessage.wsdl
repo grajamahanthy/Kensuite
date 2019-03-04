@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://trm.brassring.com/HRIS" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://trm.brassring.com/HRIS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://trm.brassring.com/HRIS">
+      <s:element name="Dispatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HRXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DispatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DispatchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DispatchSoapIn">
+    <wsdl:part name="parameters" element="tns:Dispatch" />
+  </wsdl:message>
+  <wsdl:message name="DispatchSoapOut">
+    <wsdl:part name="parameters" element="tns:DispatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="DispatchHttpGetIn">
+    <wsdl:part name="HRXML" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DispatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DispatchHttpPostIn">
+    <wsdl:part name="HRXML" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DispatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="DispatchMessageSoap">
+    <wsdl:operation name="Dispatch">
+      <wsdl:input message="tns:DispatchSoapIn" />
+      <wsdl:output message="tns:DispatchSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DispatchMessageHttpGet">
+    <wsdl:operation name="Dispatch">
+      <wsdl:input message="tns:DispatchHttpGetIn" />
+      <wsdl:output message="tns:DispatchHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DispatchMessageHttpPost">
+    <wsdl:operation name="Dispatch">
+      <wsdl:input message="tns:DispatchHttpPostIn" />
+      <wsdl:output message="tns:DispatchHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DispatchMessageSoap" type="tns:DispatchMessageSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Dispatch">
+      <soap:operation soapAction="http://trm.brassring.com/HRIS/Dispatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DispatchMessageSoap12" type="tns:DispatchMessageSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Dispatch">
+      <soap12:operation soapAction="http://trm.brassring.com/HRIS/Dispatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DispatchMessageHttpGet" type="tns:DispatchMessageHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Dispatch">
+      <http:operation location="/Dispatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DispatchMessageHttpPost" type="tns:DispatchMessageHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Dispatch">
+      <http:operation location="/Dispatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DispatchMessage">
+    <wsdl:port name="DispatchMessageSoap" binding="tns:DispatchMessageSoap">
+      <soap:address location="http://staging.brassring.com/HRISprocessor9/DispatchMessage.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DispatchMessageSoap12" binding="tns:DispatchMessageSoap12">
+      <soap12:address location="http://staging.brassring.com/HRISprocessor9/DispatchMessage.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DispatchMessageHttpGet" binding="tns:DispatchMessageHttpGet">
+      <http:address location="http://staging.brassring.com/HRISprocessor9/DispatchMessage.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DispatchMessageHttpPost" binding="tns:DispatchMessageHttpPost">
+      <http:address location="http://staging.brassring.com/HRISprocessor9/DispatchMessage.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
