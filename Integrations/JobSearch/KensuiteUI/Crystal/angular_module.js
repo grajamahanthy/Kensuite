@@ -14,10 +14,10 @@ var app = angular
         $scope.contryOption = '';
 
         //Search Filter data
-        $http.get('http://localhost:58129/api/default/GetSearchKeyword')
+        // $http.get('http://localhost:58129/api/default/GetSearchKeyword')
+        $http.get('http://localhost:54920/api/jobs/GetSearchKeyword')
             // $http.get('https://kensuitejobsearchapi.warmcall.com/api/default/GetSearchKeyword')
             .then(function (response) {
-               
                 var data = response.data;
                 // console.log(data["FilterCategories"]);
                 $scope.Searchfilter = data.SearchFilter;
@@ -36,10 +36,12 @@ var app = angular
 
                 //console.log(SearchUi);
                 // $http.post('https://kensuitejobsearchapi.warmcall.com/api/default/GetAllResult', SearchUi)
-                $http.post('http://localhost:58129/api/default/GetAllResult', SearchUi)
+               // $http.post('http://localhost:58129/api/default/GetAllResult', SearchUi)
+               $http.post('http://localhost:54920/api/jobs/GetAllResult', SearchUi)
+
                     .then(function (response) {
                         $scope.Result = response.data;
-                        // console.log(response.data);
+                       // console.log(response.data);
 
                         $scope.Jobs = $scope.Result.SearchResult;
                         $scope.Searchfilter = $scope.Result.SearchFilter;
@@ -84,7 +86,6 @@ var app = angular
             //Search Results update after clearing Filter
             $scope.SearchJob();
         }
-
 
 
         ///check box show

@@ -1,0 +1,373 @@
+<html>
+
+<head>
+    <title>Page Title</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+
+    <script src="Scripts/jquery-3.0.0.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/dirPagination.js"></script>
+    <script src="angular_module.js"></script>
+    <script data-require="angular-ui-bootstrap@0.3.0" data-semver="0.3.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.min.js"></script>
+
+    <script src="Scripts/esm/popper.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+    <script src="Scripts/bootstrap.min.js"></script>
+    <style>
+        .searchBtn{
+position: relative;
+    margin-top: -60px;}
+        .sort-icon {
+            font-size: 9px;
+            margin-left: 5px;
+        }
+
+        th {
+            cursor: pointer;
+        }
+
+        [data-toggle="collapse"] .fa:before {
+            content: "\f146";
+        }
+
+        [data-toggle="collapse"].collapsed .fa:before {
+            content: "\f0fe";
+        }
+         /* pagination */
+
+         .pagination {
+                height: 36px;
+                margin: 18px 0;
+                color: #000000;
+            }
+
+                .pagination ul {
+                    display: inline-block;
+                    *display: inline;
+                    /* IE7 inline-block hack */
+                    *zoom: 1;
+                    margin-left: 0;
+                    color: #ffffff;
+                    margin-bottom: 0;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;
+                    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                }
+
+                .pagination li {
+                    display: inline;
+                    color:#0069D9;
+                }
+
+                .pagination a {
+                    float: left;
+                    padding: 0 14px;
+                    line-height: 34px;
+                    color: #0069D9;
+                    text-decoration: none;
+                    border: 1px solid #ddd;
+                    border-left-width: 0;
+                }
+
+                    .pagination a:hover,
+                    .pagination .active a {
+                        background-color: #0069D9;
+                        color: #ffffff;
+                    }
+
+                    .pagination a:focus {
+                        background-color: #0069D9;
+                        color: #ffffff;
+                    }
+
+
+                .pagination .active a {
+                    color: #ffffff;
+                    cursor: default;
+                }
+
+                .pagination .disabled span,
+                .pagination .disabled a,
+                .pagination .disabled a:hover {
+                    color: #999999;
+                    background-color: transparent;
+                    cursor: default;
+                }
+
+                .pagination li:first-child a {
+                    border-left-width: 1px;
+                    -webkit-border-radius: 3px 0 0 3px;
+                    -moz-border-radius: 3px 0 0 3px;
+                    border-radius: 3px 0 0 3px;
+                }
+
+                .pagination li:last-child a {
+                    -webkit-border-radius: 0 3px 3px 0;
+                    -moz-border-radius: 0 3px 3px 0;
+                    border-radius: 0 3px 3px 0;
+                }
+
+            .pagination-centered {
+                text-align: center;
+            }
+
+            .pagination-right {
+                text-align: right;
+            }
+
+            .pager {
+                margin-left: 0;
+                margin-bottom: 18px;
+                list-style: none;
+                text-align: center;
+                color: #0069D9;
+                *zoom: 1;
+            }
+
+                .pager:before,
+                .pager:after {
+                    display: table;
+                    content: "";
+                }
+
+                .pager:after {
+                    clear: both;
+                }
+
+                .pager li {
+                    display: inline;
+                    color: #0069D9;
+                }
+
+                .pager a {
+                    display: inline-block;
+                    padding: 5px 14px;
+                    color: #0069D9;
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                    -webkit-border-radius: 15px;
+                    -moz-border-radius: 15px;
+                    border-radius: 15px;
+                }
+
+                    .pager a:hover {
+                        text-decoration: none;
+                        background-color: #f5f5f5;
+                    }
+
+                .pager .next a {
+                    float: right;
+                }
+
+                .pager .previous a {
+                    float: left;
+                }
+
+                .pager .disabled a,
+                .pager .disabled a:hover {
+                    color: #999999;
+                }
+input[type="checkbox"]{
+  width: 20px; /*Desired width*/
+  height: 20px; /*Desired height*/
+}
+    </style>
+</head>
+
+<body ng-app="myModule">
+
+    <div class="container" style="border:1px solid #808080;border-radius:9px" ng-controller="myController" >
+        <div class="row mb-5 mt-5">
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" >
+                <form>
+
+
+                    <!-- -->
+
+                    <div ng-repeat="q in ctrlSearchQuestions">
+
+                        <div ng-if="q.Type=='text'" class="form-group">
+                            <label>Keyword</label>
+                            <input type="text" class="form-control" id="{{q.Id}}" placeholder="{{q.Watermark}}"
+                                ng-model="q.SearchKey">
+                        </div>
+                    </div>
+                    <div class="form-row">
+
+                        <div class="form-group col-md-4" ng-if="exists(ctrlSearchQuestions) ">
+                            <label>Country </label>
+                            <select ng-model="contryOption" class="form-control" ng-change="onchange(2,contryOption)">
+                                <option value="" selected="selected">Select Country</option>
+                                <option ng-repeat="country in Countrys" value="{{country.name}}">{{country.name}}</option>
+                            </select>
+                        </div>
+
+                        <div ng-repeat="q in ctrlSearchQuestions" ng-if="q.Type=='singleselect'">
+
+                            <div class="form-group col-md-12 ml-1" ng-if="q.Title=='State'">
+                                <label>State </label>
+                                <select ng-model="q.SearchKey" class="form-control" ng-change="onchange(1,q.SearchKey)">
+                                    <option value="">Select State</option>
+                                    <option ng-repeat="state in states[contryOption]" value="{{state.shortname}}">{{state.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12 ml-1" ng-if="q.Title=='City'">
+                                <label>City </label>
+                                <select ng-model="q.SearchKey" class="form-control">
+                                    <option value="">Select City</option>
+                                    <option ng-repeat="city in Cities[stateOption]">{{city.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="pull-right" style="margin-left:10px">
+                        <button type="submit" id="btnSearch" ng-click="SearchJob()" class="btn  btn-lg btn-primary searchBtn">Search</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        <div class="row" ng-if="exists(Jobs) ">
+
+
+
+
+            <div class="col-md-8">
+                <!-- <h2 class="my-4">Job search result</h2> -->
+                <div class="row mb-2 ml-2">
+                    <div ng-repeat="f in Searchfilter.FilterCategories" ng-if="(f.FilterItems | filter : {IsSelected:true}).length > 0">
+                        <!--ng-if="f.filterCatSelected != undefined && f.filterCatSelected != null && f.filterCatSelected >= 0"-->
+                        <div class="clearfix">
+                            {{f.Title}}:
+                            <div class="btn btn-info px-1 mx-1" ng-repeat="i in f.FilterItems | filter : {IsSelected:true}"
+                                ng-init="f.filterCatSelected = $index">
+                                {{i.FilterItemTitle}} <span ng-click="SearchJob();i.IsSelected = false">
+                                    <i class="fa fa-close"></i>
+                                </span>
+                            </div>
+                            <br />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div ng-if="exists(Jobs)">
+                    <div dir-paginate="job in Jobs|itemsPerPage:4">
+                        <div class="card w-100 border-default  mb-2 ">
+                            <div class="card-body">
+                                <span class="card-text" ng-repeat="q in job.questionField">
+                                    <h3 class="card-title text-primary" ng-if="getQuestionProp(q.idField)=='Job Title'">
+                                        <a href="#">
+                                            {{q.valueField}}
+                                        </a>
+                                    </h3>
+                                    <!--<span class="mr-3" ng-if="getQuestionProp(q.idField)=='Job ID'">
+                                        <strong>{{getQuestionProp(q.idField)}} : </strong>{{q.valueField}}
+                                    </span>-->
+                                    <span class="mr-3" ng-if="getQuestionProp(q.idField)=='Job Title'">
+                                        <strong>{{getQuestionProp(q.idField)}} : </strong>{{q.valueField}}
+                                    </span>
+                                    <span class="mr-3" ng-if="getQuestionProp(q.idField)=='Location'">
+                                        <strong>{{getQuestionProp(q.idField)}} : </strong>{{q.valueField}}
+                                    </span>
+                                </span>
+                                <div class="text-right">
+                                    <a href="{{job.jobDetailLinkField}}" target="#" class="btn btn-primary">Apply Job</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true">
+
+                    </dir-pagination-controls>
+                </div>
+
+                <div ng-if="!exists(Jobs) ">
+                    Please add or change search criteria for Search result.
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                <!-- Categories Widget -->
+                <div id="container">
+                    <div id="accordion">
+                        <diV class="card my-2 text-center">
+                            <div class="card-header" style="background-color:#0592ba;">
+                                <span class="card-title text-light">
+                                    <h5> FILTER RESULTS</h5>
+                                </span>
+                            </div>
+                        </diV>
+                        <div class="card my-2" ng-repeat="filter in Searchfilter.FilterCategories">
+
+
+                            <div class="collapsed card-header" style="background-color:#0592ba;" data-toggle="collapse"
+                                href="#collapse{{filter.Title.replace(' ','')}}">
+                                <a class="card-link ">
+                                    <span class="card-title text-light text-left">
+                                        <b>{{filter.Title}}</b>
+                                        <i ng-if="collapseId!=$index" class=" fa fa-plus pull-right text-light"></i>
+                                        <i ng-if="collapseId==$index" class=" fa fa-minus pull-right text-light"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div id="collapse{{filter.Title.replace(' ','')}}" class="collapse" data-parent="#accordion">
+                                <div class="card-body" ng-if="filter.FilterItems != null">
+                                    <ul class="list-group list-group-flush" ng-repeat="a in filter.FilterItems">
+                                        <li class="list-group-item" ng-if="a.FilterItemTitle!=null">
+                                            <input type="checkbox" id="{{a.FilterItemTitle}}" ng-model="a.IsSelected"
+                                                autocomplete="off" class="text-left" ng-change='SearchJob()' />
+                                            <label for="{{a.FilterItemTitle}}" class="text-right">
+                                                {{a.FilterItemTitle}} ({{a.FilterItemResultCount}})
+                                            </label>
+                                            <!--<a href="#" ng-click="myFunc()">{{a.FilterItemTitle}} ({{a.FilterItemResultCount}})</a>-->
+
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <diV class="card my-2 text-center" ng-click="clearFilter()">
+                            <button class=" btn btn-info">
+
+                                <h5> Clear Filter</h5>
+                            </button>
+                        </diV>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+    //$(document).ready(function () {
+
+    //    $('#btnSearch').click(function () {
+    //        alert();
+    //    })
+    //})
+
+</script>

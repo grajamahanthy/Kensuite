@@ -19,6 +19,9 @@ namespace KensuiteAPI.Controllers
             KensuiteAPI.Areas.BrassRing.Jobs.Search.SearchData sobj = new KensuiteAPI.Areas.BrassRing.Jobs.Search.SearchData();
 
             //return sobj.getJobsByLocation();
+            //string yourJson = Newtonsoft.Json.JsonConvert.SerializeObject(p);
+            KensuiteAPI.Areas.BrassRing.Jobs.Search.Search alldata= sobj.getJobsBySearch(searchUi);
+          //  return Newtonsoft.Json.JsonConvert.SerializeObject(alldata);
             return sobj.getJobsBySearch(searchUi);
         }
 
@@ -31,7 +34,14 @@ namespace KensuiteAPI.Controllers
             return sobj.GetSearchkeyword();
         }
 
+        [HttpGet]
+        public SearchUi GetFeturedJobs()
+        {
+            KensuiteAPI.Areas.BrassRing.Jobs.Search.SearchData sobj = new KensuiteAPI.Areas.BrassRing.Jobs.Search.SearchData();
 
+            //return sobj.getJobsByLocation();
+            return sobj.GetHotJobs();
+        }
 
 
     }

@@ -1,0 +1,464 @@
+<Envelope version="01.00">
+    <Sender>
+        <Id>12345</Id>
+        <Credential>25253</Credential>
+    </Sender>
+    <TransactInfo transactType="response" transactId="e7492e91-6d18-435d-8bff-32f2759f3a8f">
+        <TransactId>01/27/2010</TransactId>
+        <TimeStamp>12:00:00 AM</TimeStamp>
+    </TransactInfo>
+    <Unit UnitProcessor="SearchAPI">
+        <Packet>
+            <PacketInfo packetType="data" encrypted="no">
+                <packetId>1</packetId>
+            </PacketInfo>
+            <Payload>
+                <InputString>
+                    <ClientId>25253</ClientId>
+                    <SiteId>5584</SiteId>
+                    <PageNumber>1</PageNumber>
+                    <OutputXMLFormat>0</OutputXMLFormat>
+                    <AuthenticationToken />
+                    <HotJobs />
+                    <JobDescription>yes</JobDescription>
+                    <ProximitySearch>
+                        <Distance />
+                        <Measurement />
+                        <Country />
+                        <State />
+                        <City />
+                        <zipCode />
+                    </ProximitySearch>
+                    <JobMatchCriteriaText />
+                    <SelectedSearchLocaleId />
+                    <Questions>
+                        <Question Sortorder="ASC" Sort="No">
+                            <Id>35992</Id>
+                            <Value>TG_SEARCH_ALL</Value>
+                        </Question>
+                    </Questions>
+                    <ReturnJobDetailQues>1671,1653,59081,53211,35992</ReturnJobDetailQues>
+                </InputString>
+                <ResultSet>
+                    <Jobs>
+                        <Job>
+                            <Question Id="1672">518BR</Question>
+                            <Question Id="1650" />
+                            <Question Id="1648">Accounts Payable</Question>
+                            <Question Id="53209">Detroit</Question>
+                            <Question Id="53210">MI</Question>
+                            <Question Id="1653">Detroit</Question>
+                            <Question Id="59081">Financial</Question>
+                            <Question Id="53211" />
+                            <HotJob>No</HotJob>
+                            <LastUpdated>30-Jan-2019</LastUpdated>
+                            <JobDescription>&lt;p&gt;Looking for a pricing and financial analyst to provide cost
+                                proposal development as well as budgeting and financial analysis support to the program
+                                office.&lt;/p&gt;&lt;p&gt;Duties will include, but not be limited
+                                to:&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Analyst
+                                Duties:&lt;/strong&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;br&gt;&lt;li&gt;Budget
+                                and variance analysis, expenditure and cash flow analysis, financial and contract
+                                reporting. &lt;br&gt;&lt;/li&gt;&lt;li&gt;Contract set up in accounting system and
+                                maintenance of funding and budget data from award through close out. Includes making
+                                recommendations to Program Managers regarding contract WBS structure to ensure tracking
+                                and analysis at required levels for contract reporting needs and internal tracking.
+                                &lt;br&gt;&lt;/li&gt;&lt;li&gt;Trend analysis of expenditures, including chart creation,
+                                calculations, and recommendations to Program Managers.
+                                &lt;br&gt;&lt;/li&gt;&lt;li&gt;Review actual labor hours incurred and material and
+                                travel expenditures for compliance with contract requirements and corporate policies.
+                                &lt;br&gt;&lt;/li&gt;&lt;li&gt;Support the Program Manager in development of program
+                                cost �estimates to complete� based on inception to date cost, technical and schedule
+                                performance. &lt;br&gt;&lt;/li&gt;&lt;li&gt;Create new reports/spreadsheets as needed to
+                                meet Program Manager requests and/or contract reporting requirements.
+                                &lt;br&gt;&lt;/li&gt;&lt;li&gt;Track subcontractor and material open commitments against
+                                budgets and expenditures. &lt;br&gt;&lt;/li&gt;&lt;li&gt;Provide guidance as required to
+                                program manger on what is an allowable contract cost versus
+                                unallowable.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Pricing
+                                Duties:&lt;/strong&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;br&gt;&lt;li&gt;Review
+                                solicitations for proposal requirements, identify risk areas, make bid/no-bid
+                                recommendations &lt;br&gt;&lt;/li&gt;&lt;li&gt;Make recommendations for pricing
+                                strategies &lt;br&gt;&lt;/li&gt;&lt;li&gt;Prepare TINA compliant cost and pricing
+                                volumes and cost narratives &lt;br&gt;&lt;/li&gt;&lt;li&gt;Cost/price model development
+                                &lt;br&gt;&lt;/li&gt;&lt;li&gt;Support audits and participate in cost proposal
+                                clarifications or negotiations &lt;br&gt;&lt;/li&gt;&lt;li&gt;Make recommendations on
+                                WBS and pricing structure&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</JobDescription>
+                            <JobDetailLink>
+                                https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=29041
+                            </JobDetailLink>
+                        </Job>
+                        <Job>
+                            <Question Id="1672">519BR</Question>
+                            <Question Id="1650" />
+                            <Question Id="1648">Software/System Engineer</Question>
+                            <Question Id="53209">Detroit</Question>
+                            <Question Id="53210">MI</Question>
+                            <Question Id="1653">Detroit</Question>
+                            <Question Id="59081">Technical</Question>
+                            <Question Id="53211" />
+                            <HotJob>Yes</HotJob>
+                            <LastUpdated>30-Jan-2019</LastUpdated>
+                            <JobDescription>&lt;ul&gt;&lt;br&gt;&lt;li&gt;Based on a set of requirements and desired
+                                capabilities for software recommend the most appropriate COTS, GOTS, or Open Source
+                                software products to fulfill those capabilities.
+                                &lt;br&gt;&lt;/li&gt;&lt;li&gt;Determine hardware and software dependencies for COTS,
+                                GOTS, or Open Source software that will be used within a larger software architecture.
+                                Based on these dependencies, plan for appropriate software integration activities so
+                                that the COTS/GOTS/OSS in question can be integrated with as little risk and effort as
+                                possible within a classified laboratory environment. &lt;br&gt;&lt;/li&gt;&lt;li&gt;Lead
+                                a team of engineers to perform installations and checkout of COTS, GOTS, or Open Source
+                                software that will be used within a larger software architecture. The installations will
+                                be performed within a classified laboratory environment in Manassas, VA.
+                                &lt;br&gt;&lt;/li&gt;&lt;li&gt;Perform testing and validation on COTS, GOTS, or Open
+                                Source software that will be used within a larger software architecture, based on
+                                documented requirements for the software in question. Note that the some requirements
+                                will be functional in nature, while other requirements will stipulate adherence to
+                                design objectives such as the exposure of specific software APIs.
+                                &lt;br&gt;&lt;/li&gt;&lt;li&gt;Support planning and development of automated tests,
+                                using a Government-provided test suite, for COTS, GOTS, or Open Source software to
+                                verify functionality exposed by a specific set of software APIs.
+                                &lt;br&gt;&lt;/li&gt;&lt;li&gt;Document and coordinate the review of software issues and
+                                desired enhancements for COTS, GOTS, or Open Source software that is integrated and
+                                tested within a larger software architecture. &lt;br&gt;&lt;/li&gt;&lt;li&gt;Review and
+                                provide input to UML software models which articulate the functionality and software
+                                interfaces to be exposed by COTS, GOTS, or Open Source software to be used within a
+                                larger software architecture.&lt;/li&gt;&lt;/ul&gt;</JobDescription>
+                            <JobDetailLink>
+                                https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=29042
+                            </JobDetailLink>
+                        </Job>
+                        <Job>
+                            <Question Id="1672">520BR</Question>
+                            <Question Id="1650" />
+                            <Question Id="1648">Assistant Restaurant Manager II</Question>
+                            <Question Id="53209">Detroit</Question>
+                            <Question Id="53210">MI</Question>
+                            <Question Id="1653">Detroit</Question>
+                            <Question Id="59081">Sales</Question>
+                            <Question Id="53211" />
+                            <HotJob>No</HotJob>
+                            <LastUpdated>30-Jan-2019</LastUpdated>
+                            <JobDescription>&lt;dd id="jobDesciptionDiv" class="cssDspJobBody" style="font-family: 'PT
+                                Sans', sans-serif; margin: 0px; padding: 0px; border: 0px; font-size: 14px; font-style:
+                                normal; font-variant: normal; font-weight: normal; font-stretch: inherit; line-height:
+                                17.2339992523193px; vertical-align: baseline; text-align: justify; color: #000000;
+                                letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none;
+                                white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+                                0px;"&gt;&lt;p style="font-family: inherit; margin: 0px; padding: 0px; border: 0px;
+                                font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;
+                                font-stretch: inherit; line-height: inherit; vertical-align: baseline;"&gt;&lt;strong
+                                style="font-family: inherit; margin: 0px; padding: 0px; border: 0px; font-size: inherit;
+                                font-style: inherit; font-variant: inherit; font-weight: bold; font-stretch: inherit;
+                                line-height: inherit; vertical-align: baseline;"&gt;&lt;em style="font-family: inherit;
+                                margin: 0px; padding: 0px; border: 0px; font-size: inherit; font-style: inherit;
+                                font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height:
+                                inherit; vertical-align: baseline;"&gt;&lt;span style="font-family: inherit; margin:
+                                0px; padding: 0px; border: 0px; font-size: inherit; font-style: inherit; font-variant:
+                                inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;
+                                vertical-align: baseline; text-decoration: underline;"&gt;Little Caesar Enterprises,
+                                Inc.&lt;/span&gt;&lt;/em&gt;&lt;/strong&gt;&lt;span class="Apple-converted-space"&gt;
+                                &lt;/span&gt;(�LCE�), Home of the Hot-N-Ready Pizza is seeking out energetic and driven
+                                individuals with experience in a restaurant or retail environment to join the management
+                                team at one of our corporate-owned restaurants. We have Assistant Manager (part time)
+                                positions available immediately. To continue our reign as �Best Value in America� and
+                                our 10+ consecutive years of sales growth, we are looking for leaders who can motivate
+                                others, control costs, and build sales. This is a FUN and fast paced environment!
+                                &lt;/p&gt;&lt;p style="font-family: inherit; margin: 0px; padding: 0px; border: 0px;
+                                font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;
+                                font-stretch: inherit; line-height: inherit; vertical-align: baseline;"&gt;&lt;strong
+                                style="font-family: inherit; margin: 0px; padding: 0px; border: 0px; font-size: inherit;
+                                font-style: inherit; font-variant: inherit; font-weight: bold; font-stretch: inherit;
+                                line-height: inherit; vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;/p&gt;&lt;p
+                                style="font-family: inherit; margin: 0px; padding: 0px; border: 0px; font-size: inherit;
+                                font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit;
+                                line-height: inherit; vertical-align: baseline;"&gt;As the world�s largest carry out
+                                pizza chain in business for 50 years and 1000�s of stores worldwide, we provide numerous
+                                opportunities for growth. In fact, many of our Vice-Presidents started out as crew
+                                members and/or manager trainees! Our promote from within philosophy works, and we know
+                                it! &lt;/p&gt;&lt;/dd&gt;&lt;dd id="jobDesciptionDiv" class="cssDspJobBody"
+                                style="font-family: 'PT Sans', sans-serif; margin: 0px; padding: 0px; border: 0px;
+                                font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal;
+                                font-stretch: inherit; line-height: 17.2339992523193px; vertical-align: baseline;
+                                text-align: justify; color: #000000; letter-spacing: normal; orphans: auto; text-indent:
+                                0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px;
+                                -webkit-text-stroke-width: 0px;"&gt;&lt;br&gt;&lt;/dd&gt;&lt;dd id="jobDesciptionDiv"
+                                class="cssDspJobBody" style="margin: 0px; padding: 0px; border: 0px none; font-size:
+                                14px; font-style: normal; font-variant: normal; font-weight: normal; font-stretch:
+                                inherit; line-height: 17.234px; vertical-align: baseline; text-align: justify; color:
+                                #000000; letter-spacing: normal; text-indent: 0px; text-transform: none; white-space:
+                                normal; word-spacing: 0px;"&gt;&lt;p style="margin: 0px; padding: 0px; border: 0px none;
+                                font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;
+                                font-stretch: inherit; line-height: inherit; vertical-align: baseline;"&gt;&lt;span
+                                style="color: #bf5f00;"&gt;&lt;strong&gt;Required
+                                Skills&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;/dd&gt;&lt;dd id="jobRequiredSkillsDiv"
+                                class="cssDspJobBody" style="font-family: 'PT Sans', sans-serif; margin: 0px; padding:
+                                0px; border: 0px; font-size: 14px; font-style: normal; font-variant: normal;
+                                font-weight: normal; font-stretch: inherit; line-height: 17.2339992523193px;
+                                vertical-align: baseline; text-align: justify; color: #000000; letter-spacing: normal;
+                                orphans: auto; text-indent: 0px; text-transform: none; white-space: normal; widows:
+                                auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;"&gt;&lt;p style="font-family:
+                                inherit; margin: 0px; padding: 0px; border: 0px; font-size: inherit; font-style:
+                                inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit;
+                                line-height: inherit; vertical-align: baseline;"&gt;Job requirements:&lt;/p&gt;&lt;p
+                                style="font-family: inherit; margin: 0px; padding: 0px; border: 0px; font-size: inherit;
+                                font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit;
+                                line-height: inherit; vertical-align: baseline;"&gt; &lt;/p&gt;&lt;ul
+                                style="font-family: inherit; margin: 0px 0px 0px 2em; padding: 0px; border: 0px;
+                                font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;
+                                font-stretch: inherit; line-height: inherit; vertical-align: baseline;"&gt;&lt;li
+                                style="font-family: inherit; margin: 0px; padding: 0px !important; border: 0px;
+                                font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;
+                                font-stretch: inherit; line-height: inherit; vertical-align: baseline; text-indent: 0px
+                                !important;"&gt;1-2 years experience in a high volume, quick service or fast casual
+                                restaurant environment&lt;/li&gt;&lt;li style="font-family: inherit; margin: 0px;
+                                padding: 0px !important; border: 0px; font-size: inherit; font-style: inherit;
+                                font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height:
+                                inherit; vertical-align: baseline; text-indent: 0px !important;"&gt;High School diploma
+                                or GED&lt;/li&gt;&lt;li style="font-family: inherit; margin: 0px; padding: 0px
+                                !important; border: 0px; font-size: inherit; font-style: inherit; font-variant: inherit;
+                                font-weight: inherit; font-stretch: inherit; line-height: inherit; vertical-align:
+                                baseline; text-indent: 0px !important;"&gt;Excellent leadership, communication, and team
+                                building skills&lt;/li&gt;&lt;li style="font-family: inherit; margin: 0px; padding: 0px
+                                !important; border: 0px; font-size: inherit; font-style: inherit; font-variant: inherit;
+                                font-weight: inherit; font-stretch: inherit; line-height: inherit; vertical-align:
+                                baseline; text-indent: 0px !important;"&gt;Positive attitude and outstanding work
+                                ethic&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;</JobDescription>
+                            <JobDetailLink>
+                                https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=29043
+                            </JobDetailLink>
+                        </Job>
+                        <Job>
+                            <Question Id="1672">521BR</Question>
+                            <Question Id="1650" />
+                            <Question Id="1648">Assistant Restaurant Manager</Question>
+                            <Question Id="53209">Detroit</Question>
+                            <Question Id="53210">MI</Question>
+                            <Question Id="1653">Detroit</Question>
+                            <Question Id="59081">Sales</Question>
+                            <Question Id="53211" />
+                            <HotJob>No</HotJob>
+                            <LastUpdated>30-Jan-2019</LastUpdated>
+                            <JobDescription>&lt;dd id="jobDesciptionDiv" class="cssDspJobBody" style="font-family: 'PT
+                                Sans', sans-serif; margin: 0px; padding: 0px; border: 0px; font-size: 14px; font-style:
+                                normal; font-variant: normal; font-weight: normal; font-stretch: inherit; line-height:
+                                17.2339992523193px; vertical-align: baseline; text-align: justify; color: #000000;
+                                letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none;
+                                white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+                                0px;"&gt;&lt;p style="font-family: inherit; margin: 0px; padding: 0px; border: 0px;
+                                font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;
+                                font-stretch: inherit; line-height: inherit; vertical-align: baseline;"&gt;&lt;strong
+                                style="font-family: inherit; margin: 0px; padding: 0px; border: 0px; font-size: inherit;
+                                font-style: inherit; font-variant: inherit; font-weight: bold; font-stretch: inherit;
+                                line-height: inherit; vertical-align: baseline;"&gt;&lt;em style="font-family: inherit;
+                                margin: 0px; padding: 0px; border: 0px; font-size: inherit; font-style: inherit;
+                                font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height:
+                                inherit; vertical-align: baseline;"&gt;&lt;span style="font-family: inherit; margin:
+                                0px; padding: 0px; border: 0px; font-size: inherit; font-style: inherit; font-variant:
+                                inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;
+                                vertical-align: baseline; text-decoration: underline;"&gt;Little Caesar Enterprises,
+                                Inc.&lt;/span&gt;&lt;/em&gt;&lt;/strong&gt;&lt;span class="Apple-converted-space"&gt;
+                                &lt;/span&gt;(�LCE�), Home of the Hot-N-Ready Pizza is seeking out energetic and driven
+                                individuals with experience in a restaurant or retail environment to join the management
+                                team at one of our corporate-owned restaurants. We have Assistant Manager (part time)
+                                positions available immediately. To continue our reign as �Best Value in America� and
+                                our 10+ consecutive years of sales growth, we are looking for leaders who can motivate
+                                others, control costs, and build sales. This is a FUN and fast paced environment!
+                                &lt;/p&gt;&lt;p style="font-family: inherit; margin: 0px; padding: 0px; border: 0px;
+                                font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;
+                                font-stretch: inherit; line-height: inherit; vertical-align: baseline;"&gt;&lt;strong
+                                style="font-family: inherit; margin: 0px; padding: 0px; border: 0px; font-size: inherit;
+                                font-style: inherit; font-variant: inherit; font-weight: bold; font-stretch: inherit;
+                                line-height: inherit; vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;/p&gt;&lt;p
+                                style="font-family: inherit; margin: 0px; padding: 0px; border: 0px; font-size: inherit;
+                                font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit;
+                                line-height: inherit; vertical-align: baseline;"&gt;As the world�s largest carry out
+                                pizza chain in business for 50 years and 1000�s of stores worldwide, we provide numerous
+                                opportunities for growth. In fact, many of our Vice-Presidents started out as crew
+                                members and/or manager trainees! Our promote from within philosophy works, and we know
+                                it! &lt;/p&gt;&lt;p style="font-family: inherit; margin: 0px; padding: 0px; border: 0px;
+                                font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;
+                                font-stretch: inherit; line-height: inherit; vertical-align: baseline;"&gt;
+                                &lt;/p&gt;&lt;/dd&gt;&lt;dt id="dspJobTxtReqSkillsDiv" class="cssDspJobHead"
+                                style="font-family: 'PT Sans', sans-serif; margin: 15px 0px 0px; padding: 0px; border:
+                                0px; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700;
+                                font-stretch: inherit; line-height: 17.2339992523193px; vertical-align: baseline; color:
+                                #000000; letter-spacing: normal; orphans: auto; text-align: left; text-indent: 0px;
+                                text-transform: none; white-space: normal; widows: auto; word-spacing: 0px;
+                                -webkit-text-stroke-width: 0px;"&gt;Required Skills&lt;/dt&gt;&lt;dd
+                                id="jobRequiredSkillsDiv" class="cssDspJobBody" style="font-family: 'PT Sans',
+                                sans-serif; margin: 0px; padding: 0px; border: 0px; font-size: 14px; font-style: normal;
+                                font-variant: normal; font-weight: normal; font-stretch: inherit; line-height:
+                                17.2339992523193px; vertical-align: baseline; text-align: justify; color: #000000;
+                                letter-spacing: normal; orphans: auto; text-indent: 0px; text-transform: none;
+                                white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width:
+                                0px;"&gt;&lt;p style="font-family: inherit; margin: 0px; padding: 0px; border: 0px;
+                                font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;
+                                font-stretch: inherit; line-height: inherit; vertical-align: baseline;"&gt;Job
+                                requirements:&lt;/p&gt;&lt;p style="font-family: inherit; margin: 0px; padding: 0px;
+                                border: 0px; font-size: inherit; font-style: inherit; font-variant: inherit;
+                                font-weight: inherit; font-stretch: inherit; line-height: inherit; vertical-align:
+                                baseline;"&gt; &lt;/p&gt;&lt;ul style="font-family: inherit; margin: 0px 0px 0px 2em;
+                                padding: 0px; border: 0px; font-size: inherit; font-style: inherit; font-variant:
+                                inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;
+                                vertical-align: baseline;"&gt;&lt;li style="font-family: inherit; margin: 0px; padding:
+                                0px !important; border: 0px; font-size: inherit; font-style: inherit; font-variant:
+                                inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;
+                                vertical-align: baseline; text-indent: 0px !important;"&gt;1-2 years experience in a
+                                high volume, quick service or fast casual restaurant environment&lt;/li&gt;&lt;li
+                                style="font-family: inherit; margin: 0px; padding: 0px !important; border: 0px;
+                                font-size: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit;
+                                font-stretch: inherit; line-height: inherit; vertical-align: baseline; text-indent: 0px
+                                !important;"&gt;High School diploma or GED&lt;/li&gt;&lt;li style="font-family: inherit;
+                                margin: 0px; padding: 0px !important; border: 0px; font-size: inherit; font-style:
+                                inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit;
+                                line-height: inherit; vertical-align: baseline; text-indent: 0px
+                                !important;"&gt;Excellent leadership, communication, and team building
+                                skills&lt;/li&gt;&lt;li style="font-family: inherit; margin: 0px; padding: 0px
+                                !important; border: 0px; font-size: inherit; font-style: inherit; font-variant: inherit;
+                                font-weight: inherit; font-stretch: inherit; line-height: inherit; vertical-align:
+                                baseline; text-indent: 0px !important;"&gt;Positive attitude and outstanding work
+                                ethic&lt;/li&gt;&lt;/ul&gt;&lt;/dd&gt;</JobDescription>
+                            <JobDetailLink>
+                                https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=29044
+                            </JobDetailLink>
+                        </Job>
+                        <Job>
+                            <Question Id="1672">472BR</Question>
+                            <Question Id="1650" />
+                            <Question Id="1648">General Labor - Loveland</Question>
+                            <Question Id="53209">Denver</Question>
+                            <Question Id="53210">CO</Question>
+                            <Question Id="1653">Denver, CO</Question>
+                            <Question Id="59081" />
+                            <Question Id="53211" />
+                            <HotJob>No</HotJob>
+                            <LastUpdated>13-Aug-2014</LastUpdated>
+                            <JobDescription>&lt;span style="color: #000000; font-family: Arial, Helvetica, sans-serif;
+                                font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal;
+                                letter-spacing: normal; line-height: normal; orphans: auto; text-align: start;
+                                text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing:
+                                0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none;
+                                background-color: #ffffff;"&gt;We use the industry�s most advanced printing equipment in
+                                our Press and Finishing Departments. Our Press department offers a high-quality,
+                                high-speed printing services. The Finishing department, where individual pages get bound
+                                into complete magazines and catalogs, offers a variety of capabilities to advance the
+                                most complex marketing ideas, including stitching, binding, polywrapping and
+                                personalization. Our Finishing technicians also perform sophisticated mail processing.
+                                Our production professionals are hard-working, flexible, and technologically
+                                savvy.&lt;/span&gt;</JobDescription>
+                            <JobDetailLink>
+                                https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=28706
+                            </JobDetailLink>
+                        </Job>
+                        <Job>
+                            <Question Id="1672">269BR</Question>
+                            <Question Id="1650" />
+                            <Question Id="1648">Customer Sales Representative</Question>
+                            <Question Id="53209">Denver</Question>
+                            <Question Id="53210">CO</Question>
+                            <Question Id="1653">Denver, CO</Question>
+                            <Question Id="59081">Financial</Question>
+                            <Question Id="53211" />
+                            <HotJob>No</HotJob>
+                            <LastUpdated>21-Jan-2014</LastUpdated>
+                            <JobDescription>&lt;P&gt;Are you looking to start a sales career in a rewarding position
+                                that offers career advancement? This entry level sales role may be what you�re looking
+                                for! As a Customer Sales Representative, you will use your customer service and sales
+                                abilities to answer inbound calls in the Afni contact call center. In this inside sales
+                                role, you will have 6 � 8 weeks of paid training designed to help you succeed. Afni
+                                offers a great hourly wage with bonus opportunities, career advancement, full-line of
+                                medical benefits and tuition reimbursement! Think you have what it takes to perform the
+                                following duties?&lt;/P&gt; &lt;UL&gt;&lt;BR&gt; &lt;LI&gt;Build and maintain rapport
+                                with customers &lt;/LI&gt; &lt;LI&gt;Identify customer needs; review and update activity
+                                on accounts &lt;/LI&gt; &lt;LI&gt;Resolve customer issues in a prompt, professional and
+                                friendly manner &lt;/LI&gt; &lt;LI&gt;Promote and sell products and services to meet
+                                goals &lt;/LI&gt; &lt;LI&gt;Attend training to update product knowledge
+                                &lt;/LI&gt;&lt;/UL&gt;</JobDescription>
+                            <JobDetailLink>
+                                https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=27774
+                            </JobDetailLink>
+                        </Job>
+                        <Job>
+                            <Question Id="1672">270BR</Question>
+                            <Question Id="1650" />
+                            <Question Id="1648">Customer Sales Representative</Question>
+                            <Question Id="53209">Indianola</Question>
+                            <Question Id="53210">IA</Question>
+                            <Question Id="1653">Indianola</Question>
+                            <Question Id="59081">Financial</Question>
+                            <Question Id="53211" />
+                            <HotJob>No</HotJob>
+                            <LastUpdated>21-Jan-2014</LastUpdated>
+                            <JobDescription>&lt;P&gt;Are you looking to start a sales career in a rewarding position
+                                that offers career advancement? This entry level sales role may be what you�re looking
+                                for! As a Customer Sales Representative, you will use your customer service and sales
+                                abilities to answer inbound calls in the Afni contact call center. In this inside sales
+                                role, you will have 6 � 8 weeks of paid training designed to help you succeed. Afni
+                                offers a great hourly wage with bonus opportunities, career advancement, full-line of
+                                medical benefits and tuition reimbursement! Think you have what it takes to perform the
+                                following duties?&lt;/P&gt;&lt;BR&gt; &lt;UL&gt;&lt;BR&gt;&lt;BR&gt; &lt;LI&gt;Build and
+                                maintain rapport with customers &lt;/LI&gt;&lt;BR&gt; &lt;LI&gt;Identify customer needs;
+                                review and update activity on accounts &lt;/LI&gt;&lt;BR&gt; &lt;LI&gt;Resolve customer
+                                issues in a prompt, professional and friendly manner &lt;/LI&gt;&lt;BR&gt;
+                                &lt;LI&gt;Promote and sell products and services to meet goals &lt;/LI&gt;&lt;BR&gt;
+                                &lt;LI&gt;Attend training to update product knowledge &lt;/LI&gt;&lt;/UL&gt;
+                            </JobDescription>
+                            <JobDetailLink>
+                                https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=27775
+                            </JobDetailLink>
+                        </Job>
+                        <Job>
+                            <Question Id="1672">271BR</Question>
+                            <Question Id="1650" />
+                            <Question Id="1648">Customer Sales Representative</Question>
+                            <Question Id="53209">Sioux Falls</Question>
+                            <Question Id="53210">SD</Question>
+                            <Question Id="1653">Sioux Falls</Question>
+                            <Question Id="59081">Financial</Question>
+                            <Question Id="53211" />
+                            <HotJob>No</HotJob>
+                            <LastUpdated>21-Jan-2014</LastUpdated>
+                            <JobDescription>&lt;P&gt;Are you looking to start a sales career in a rewarding position
+                                that offers career advancement? This entry level sales role may be what you�re looking
+                                for! As a Customer Sales Representative, you will use your customer service and sales
+                                abilities to answer inbound calls in the Afni contact call center. In this inside sales
+                                role, you will have 6 � 8 weeks of paid training designed to help you succeed. Afni
+                                offers a great hourly wage with bonus opportunities, career advancement, full-line of
+                                medical benefits and tuition reimbursement! Think you have what it takes to perform the
+                                following duties?&lt;/P&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;
+                                &lt;UL&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt; &lt;LI&gt;Build and maintain rapport
+                                with customers &lt;/LI&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt; &lt;LI&gt;Identify customer
+                                needs; review and update activity on accounts &lt;/LI&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;
+                                &lt;LI&gt;Resolve customer issues in a prompt, professional and friendly manner
+                                &lt;/LI&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt; &lt;LI&gt;Promote and sell products and
+                                services to meet goals &lt;/LI&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt; &lt;LI&gt;Attend
+                                training to update product knowledge &lt;/LI&gt;&lt;/UL&gt;</JobDescription>
+                            <JobDetailLink>
+                                https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=27776
+                            </JobDetailLink>
+                        </Job>
+                    </Jobs>
+                    <OtherInformation>
+                        <TotalRecordsFound>8</TotalRecordsFound>
+                        <MaxPages>1</MaxPages>
+                        <StartDoc>1</StartDoc>
+                        <PageNumber>1</PageNumber>
+                    </OtherInformation>
+                </ResultSet>
+            </Payload>
+            <Status><Code>200</Code>
+                <ShortDescription>Successful Search API Call</ShortDescription>
+                <LongDescription>The Search API call has been successfully completed and returned with results.
+                </LongDescription>
+            </Status>
+        </Packet>
+        <Status><Code>200</Code>
+            <ShortDescription>Successful Search API Call</ShortDescription>
+            <LongDescription>The Search API call has been successfully completed and returned with results.
+            </LongDescription>
+        </Status>
+    </Unit>
+    <Status><Code>200</Code>
+        <ShortDescription>Success</ShortDescription>
+        <LongDescription>All units are processed with success codes</LongDescription>
+    </Status>
+</Envelope>

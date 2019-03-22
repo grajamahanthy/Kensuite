@@ -17,7 +17,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         {
             BrassRingJobs.WebRouterSoapClient obj = new WebRouterSoapClient("WebRouterSoap");
             // string data = obj.route("<Envelope version=\"01.00\"> <Sender><Id>12345</Id><Credential>25253</Credential></Sender> <TransactInfo transactId=\"1\" transactType=\"data\"><TransactId>01/27/2010</TransactId> <TimeStamp>12:00:00 AM</TimeStamp></TransactInfo> <Unit UnitProcessor=\"SearchAPI\"> <Packet> <PacketInfo packetType=\"data\"> <packetId>1</packetId></PacketInfo><Payload><InputString> <ClientId>25253</ClientId><SiteId>5700</SiteId> <PageNumber>1</PageNumber><OutputXMLFormat>0</OutputXMLFormat> <AuthenticationToken/><HotJobs/> <ProximitySearch><Distance/> <Measurement/> <Country/><State/> <City/><zipCode/> </ProximitySearch><JobMatchCriteriaText/> <SelectedSearchLocaleId/> <Questions> <Question Sortorder=\"ASC\" Sort=\"No\"> <Id>35992</Id> <Value> <![CDATA[TG_SEARCH_ALL]]></Value></Question></Questions></InputString> </Payload> </Packet> </Unit></Envelope>");
-            string data = obj.route("<Envelope version=\"01.00\"> <Sender><Id>12345</Id><Credential>25253</Credential></Sender> <TransactInfo transactId=\"1\" transactType=\"data\"><TransactId>01/27/2010</TransactId> <TimeStamp>12:00:00 AM</TimeStamp></TransactInfo> <Unit UnitProcessor=\"SearchAPI\"> <Packet> <PacketInfo packetType=\"data\"> <packetId>1</packetId></PacketInfo><Payload><InputString> <ClientId>25253</ClientId><SiteId>5584</SiteId> <PageNumber>1</PageNumber><OutputXMLFormat>0</OutputXMLFormat> <AuthenticationToken/><HotJobs/> <JobDescription>yes</JobDescription><ProximitySearch><Distance/> <Measurement/> <Country/><State/> <City/><zipCode/> </ProximitySearch><JobMatchCriteriaText/> <SelectedSearchLocaleId/> <Questions> <Question Sortorder=\"ASC\" Sort=\"No\"> <Id>35992</Id> <Value> <![CDATA[TG_SEARCH_ALL]]></Value></Question></Questions><ReturnJobDetailQues>1671,1653,59081,53211</ReturnJobDetailQues></InputString> </Payload> </Packet> </Unit></Envelope>");
+            string data = obj.route("<Envelope version=\"01.00\"> <Sender><Id>12345</Id><Credential>25253</Credential></Sender> <TransactInfo transactId=\"1\" transactType=\"data\"><TransactId>01/27/2010</TransactId> <TimeStamp>12:00:00 AM</TimeStamp></TransactInfo> <Unit UnitProcessor=\"SearchAPI\"> <Packet> <PacketInfo packetType=\"data\"> <packetId>1</packetId></PacketInfo><Payload><InputString> <ClientId>25253</ClientId><SiteId>5584</SiteId> <PageNumber>1</PageNumber><OutputXMLFormat>0</OutputXMLFormat> <AuthenticationToken/><HotJobs/> <JobDescription>yes</JobDescription><ProximitySearch><Distance/> <Measurement/> <Country/><State/> <City/><zipCode/> </ProximitySearch><JobMatchCriteriaText/> <SelectedSearchLocaleId/> <Questions> <Question Sortorder=\"ASC\" Sort=\"No\"> <Id>35992</Id> <Value> <![CDATA[TG_SEARCH_ALL]]></Value></Question></Questions><ReturnJobDetailQues>1671,1653,59081,53211,35992</ReturnJobDetailQues></InputString> </Payload> </Packet> </Unit></Envelope>");
             data = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>" + data;
 
             ////////////////////////////////////////////////////////Get Search Result 
@@ -52,6 +52,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         //Search By Filter
         public Search getJobsBySearch(SearchUi searchui)
         {
+           // GetHotJobs();
             List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData();
             FieldMap fieldMapper = GetFieldMapper();
             Search srch = new Search();
@@ -72,7 +73,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
                                             (Convert.ToString(r.Value == null ? "" : r.Value).ToLower()).Contains(Convert.ToString(q.SearchKey).Trim().ToLower())).Count() > 0)));
                 }
             }
-            List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults = res.ToList();
+            List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults = (searchui.IsHotJob ? (res.Where(y=>y.HotJob.ToLower() =="yes").ToList()) : res.ToList());
 
             ////Get Search Results By Filter
             bool IsFilterCatExist = false;
@@ -113,7 +114,60 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
 
             srch.SearchFilter.SearchQuestions = searchui.SearchQuestions;
 
+            srch.SearchFilter.IsHotJob = searchui.IsHotJob;
+
             return srch;
+        }
+
+        public List<FilterCategory> GetLeftFilter(FieldMap fieldMapper, List<EnvelopeUnitPacketPayloadResultSetJob> jobs, List<FilterCategory> filterCats, bool isHotJob)
+        {
+            //Get Left Filter
+            List<FilterCategory> lstFc = new List<FilterCategory>();
+            foreach (FieldMapFilterQuestion field in fieldMapper.SearchFilter)
+            {
+                FilterCategory fc = new FilterCategory();
+                fc.Title = field.Title;
+                fc.Id = field.Id;
+
+                if (isHotJob)
+                    jobs = jobs.Where(z => z.HotJob.ToLower() == "yes").ToList();
+
+                var fItems = jobs
+                    .SelectMany(x => x.Question.Where(q1 => q1.Id == field.Id).Select(y => new { qid = y.Id, qval = y.Value }))
+                    .GroupBy(a => new
+                    {
+                        id = a.qid,
+                        value = a.qval
+                    })
+                    .Select(a => new
+                    {
+                        questionid = a.Key.id,
+                        filterTitle = a.Key.value,
+                        FilterItemResultCount = a.Count()
+                    });
+
+                // var fItems = (data.Unit.Packet.Payload.ResultSet.Jobs.GroupBy(j => j.Location).Select(lis => new { FilterItemTitle = lis.Key, FilterItemResultCount = lis.Count() }));
+
+                List<FilterItem> lstFi = new List<FilterItem>();
+                foreach (var i in fItems.ToList())
+                {
+                    FilterItem fi = new FilterItem();
+                    fi.FilterItemTitle = i.filterTitle;
+                    fi.FilterItemResultCount = i.FilterItemResultCount;
+
+                    if (filterCats != null)
+                        fi.IsSelected = ((filterCats.Where(x => x.Id == fc.Id)
+                                                .Select(y => y.FilterItems
+                                                .Where(z => z.FilterItemTitle == fi.FilterItemTitle && z.IsSelected)))
+                                                .FirstOrDefault().Count() > 0);
+
+                    lstFi.Add(fi);
+                }
+                fc.FilterItems = lstFi;
+
+                lstFc.Add(fc);
+            }
+            return lstFc;
         }
 
         public SearchUi GetSearchFilter(FieldMap fieldMapper, List<EnvelopeUnitPacketPayloadResultSetJob> jobs, List<FilterCategory> filterCats)
@@ -121,53 +175,13 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
             try
             {
                 SearchUi uiObj = new SearchUi();
+               
+                    List<FilterCategory> lstFc = GetLeftFilter(fieldMapper, jobs, filterCats, false);
+                    uiObj.FilterCategories = lstFc;
+               
 
-                //Get Left Filter
-                List<FilterCategory> lstFc = new List<FilterCategory>();
-                foreach (FieldMapFilterQuestion field in fieldMapper.SearchFilter)
-                {
-                    FilterCategory fc = new FilterCategory();
-                    fc.Title = field.Title;
-                    fc.Id = field.Id;
-
-                    var fItems = jobs
-                        .SelectMany(x => x.Question.Where(q1 => q1.Id == field.Id).Select(y => new { qid = y.Id, qval = y.Value }))
-                        .GroupBy(a => new
-                        {
-                            id = a.qid,
-                            value = a.qval
-                        })
-                        .Select(a => new
-                        {
-                            questionid = a.Key.id,
-                            filterTitle = a.Key.value,
-                            FilterItemResultCount = a.Count()
-                        });
-
-                    // var fItems = (data.Unit.Packet.Payload.ResultSet.Jobs.GroupBy(j => j.Location).Select(lis => new { FilterItemTitle = lis.Key, FilterItemResultCount = lis.Count() }));
-
-                    List<FilterItem> lstFi = new List<FilterItem>();
-                    foreach (var i in fItems.ToList())
-                    {
-                        FilterItem fi = new FilterItem();
-                        fi.FilterItemTitle = i.filterTitle;
-                        fi.FilterItemResultCount = i.FilterItemResultCount;
-
-                        if (filterCats != null)
-                            fi.IsSelected = ((filterCats.Where(x => x.Id == fc.Id)
-                                                    .Select(y => y.FilterItems
-                                                    .Where(z => z.FilterItemTitle == fi.FilterItemTitle && z.IsSelected)))
-                                                    .FirstOrDefault().Count() > 0);
-
-                        lstFi.Add(fi);
-                    }
-                    fc.FilterItems = lstFi;
-
-                    lstFc.Add(fc);
-                }
-                uiObj.FilterCategories = lstFc;
-
-
+                List<FilterCategory> featuredLstFc = GetLeftFilter(fieldMapper, jobs, filterCats, true);
+                uiObj.FeaturedFilterCategories = featuredLstFc;
 
                 //Get Top Key Filter
                 List<Question> lstSearchKeyQuestions = new List<Question>();
@@ -192,10 +206,14 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         public Search GetSearchkeyword()
         {
             Search srch = new Search();
+            List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData();
+            IEnumerable<EnvelopeUnitPacketPayloadResultSetJob> res = searchDataSource;
+
             FieldMap fieldMapper = GetFieldMapper();
             //Get Field Mapper
             SearchUi uiObj = new SearchUi();
             List<Question> lstSearchKeyQuestions = new List<Question>();
+            List<location> location = new List<Jobs.Search.location>();
             foreach (FieldMapKeywordQuestion field in fieldMapper.SearchKeyword)
             {
                 Question q = new Question();
@@ -204,10 +222,39 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
                 q.Type = field.Type;
                 q.Watermark = field.Watermark;
                 lstSearchKeyQuestions.Add(q);
+                if (field.Type == "singleselect")
+                {
+
+                    var data = res.Select(x => x.Question).ToList();
+                }
+
             }
             uiObj.SearchQuestions = lstSearchKeyQuestions;
+
+
+
+
+
             srch.SearchFilter = uiObj;
             return srch;
         }
+
+        public SearchUi GetHotJobs()
+        {
+            SearchUi uiObj = new SearchUi();
+            
+            FieldMap fieldMapper = GetFieldMapper();
+            List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData();
+            IEnumerable<EnvelopeUnitPacketPayloadResultSetJob> res = searchDataSource;
+            List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults =res.Where(y=>y.HotJob.ToLower() =="yes").ToList();
+            List<FilterCategory> obj = null;
+            List<FilterCategory> lstFc = GetLeftFilter(fieldMapper, filterItemResults, obj, false);
+            uiObj.FilterCategories = lstFc;
+
+            List<FilterCategory> featuredLstFc = GetLeftFilter(fieldMapper, filterItemResults, obj, true);
+            uiObj.FeaturedFilterCategories= featuredLstFc;
+            return uiObj;
+        }
+
     }
 }

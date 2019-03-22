@@ -4916,210 +4916,204 @@
         <!--<div id="Main_C009_Col00" class="sf_colsIn container-padded container-margin" data-sf-element="Container"
              data-placeholder-label="Container">
         </div>-->
-        <div class="container" ng-app="myModule" ng-cloak ng-controller="myController" style="font-family: Gotham SSm A,Gotham SSm B;font-style: normal;">
+        <div ng-app="myModule" ng-cloak ng-controller="myController">
+            <div class="container" style="font-family: Gotham SSm A,Gotham SSm B;font-style: normal;">
 
-            <div class="searchKeyContainer">
-                <form class="searchKeyContainer_inner">
-                    <div class="searchKeyContainer_left">
-                        <div class="searchfield" >
-                            <div ng-repeat="q in ctrlSearchQuestions">
-                            <div ng-if="q.Type=='text'" style="margin-bottom:10px">
-                                <label>Keyword</label>
-                                <input type="text" id="{{q.Id}}" placeholder="{{q.Watermark}}" ng-model="q.SearchKey">
-                            </div>
-                            <div ng-if="q.Type=='singleselect'">
-                                <!-- <input type="text" style="padding: 12px 20px;margin: 0px 0;box-sizing: border-box;" id="{{q.Id}}"
+                <div class="searchKeyContainer">
+                    <form class="searchKeyContainer_inner">
+                        <div class="searchKeyContainer_left">
+                            <div class="searchfield">
+                                <div ng-repeat="q in ctrlSearchQuestions">
+                                    <div ng-if="q.Type=='text'" style="margin-bottom:10px">
+                                        <label>Keyword</label>
+                                        <input type="text" id="{{q.Id}}" placeholder="{{q.Watermark}}" ng-model="q.SearchKey">
+                                    </div>
+                                    <div ng-if="q.Type=='singleselect'">
+                                        <!-- <input type="text" style="padding: 12px 20px;margin: 0px 0;box-sizing: border-box;" id="{{q.Id}}"
                                     placeholder="{{q.Watermark}}" ng-model="q.SearchKey"> -->
-                                <!-- <label>Country/Region </label> -->
-                                <!-- <div ng-repeat="con in countrys">
+                                        <!-- <label>Country/Region </label> -->
+                                        <!-- <div ng-repeat="con in countrys">
                                     {{con.states[0]}}
                                     <div ng-repeat="state in con.states">
                                         {{state}}
                                     </div>
                                 </div> -->
 
-                                <div class="selectdiv" ng-if="q.Title=='State'">
-                                    <label>Country </label>
-                                    <select ng-model="contryOption" ng-change="onchange(2,contryOption)">
-                                        <option value="" selected="selected">Select Country</option>
-                                        <option ng-repeat="country in Countrys" value="{{country.name}}">{{country.name}}</option>
-                                    </select>
-                                </div>
-                                <div class="selectdiv" ng-if="q.Title=='State'">
-                                    <label>State </label>
-                                    <select ng-model="q.SearchKey" ng-change="onchange(1,q.SearchKey)">
-                                        <option value="">Select State</option>
-                                        <option ng-repeat="state in states[contryOption]" value="{{state.shortname}}">{{state.name}}</option>
-                                    </select>
-                                </div>
+                                        <div class="selectdiv" ng-if="q.Title=='State'">
+                                            <label>Country </label>
+                                            <select ng-model="contryOption" ng-change="onchange(2,contryOption)">
+                                                <option value="" selected="selected">Select Country</option>
+                                                <option ng-repeat="country in Countrys" value="{{country.name}}">{{country.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="selectdiv" ng-if="q.Title=='State'">
+                                            <label>State </label>
+                                            <select ng-model="q.SearchKey" ng-change="onchange(1,q.SearchKey)">
+                                                <option value="">Select State</option>
+                                                <option ng-repeat="state in states[contryOption]" value="{{state.shortname}}">{{state.name}}</option>
+                                            </select>
+                                        </div>
 
-                                <div class="selectdiv" ng-if="q.Title=='City'">
-                                    <label>City </label>
-                                    <select ng-model="q.SearchKey">
-                                        <option value="">Select City</option>
-                                        <option ng-repeat="city in Cities[stateOption]">{{city.name}}</option>
-                                    </select>
-                                </div>
-
-
-                                <!-- <label>State/Province</label> -->
+                                        <div class="selectdiv" ng-if="q.Title=='City'">
+                                            <label>City </label>
+                                            <select ng-model="q.SearchKey">
+                                                <option value="">Select City</option>
+                                                <option ng-repeat="city in Cities[stateOption]">{{city.name}}</option>
+                                            </select>
+                                        </div>
 
 
-                                <!-- <label>City </label> -->
+                                        <!-- <label>State/Province</label> -->
 
+
+                                        <!-- <label>City </label> -->
+
+                                    </div>
+                                </diV>
                             </div>
-                        </diV>
+                            <div class="searchSubmit">
+                                <button type="submit" id="btnSearch" ng-click="SearchJob(true)">Search</button>
+                            </div>
                         </div>
-                        <div class="searchSubmit">
-                            <button type="submit"  id="btnSearch" ng-click="SearchJob(true)">Search</button>
+                        <div class="searchKeyContainer_Right">
+
+                            <p>Already applied?</p>
+                            <a target="#" href="https://xjobs.brassring.com/TGnewUI/Search/Home/Home?partnerid=25253&siteid=5584">View
+                                Dashboard</a>
                         </div>
-                    </div>
-                    <div class="searchKeyContainer_Right">
+                    </form>
+                </div>
+                <div>
+                    <br />
+                </div>
+                <div class="filterResultContainer">
 
-                        <p>Already applied?</p>
-                        <a target="#" href="https://xjobs.brassring.com/TGnewUI/Search/Home/Home?partnerid=25253&siteid=5584">View
-                            Dashboard</a>
-                    </div>
-                </form>
-            </div>
-            <div>
-                <br />
-            </div>
-            <div class="filterResultContainer">
-
-                <div class="resultContainer">
-                    <div class="">
-                        <!-- <center ng-if="exists(Jobs)">
+                    <div class="resultContainer">
+                        <div class="">
+                            <!-- <center ng-if="exists(Jobs)">
                             <h4 style="font-family: Gotham SSm A,Gotham SSm B !important;font-style: normal;"><u>JOB
                                     RESULT</u></h4>
                         </center> -->
-                        <div class="">
-                            <br />
-                            <span ng-repeat="f in Searchfilter.FilterCategories" ng-if="(f.FilterItems | filter : {IsSelected:true}).length > 0"
-                                style="margin-bottom:5px;clear:both;margin-top:10px">
-                                {{f.Title}}:
-                                <span class="btn btn-info px-2 mx-1" style="padding:5px;color:#ffffff;background-color:#2E7777;margin-right:1px;"
-                                    ng-repeat="i in f.FilterItems | filter : {IsSelected:true}" ng-init="f.filterCatSelected = $index">
-                                    {{i.FilterItemTitle}} <span ng-click="SearchJob();i.IsSelected = false"><i class="fa fa-close">
-                                        </i></span>
+                            <div class="">
+                                <br />
+                                <span ng-repeat="f in Searchfilter.FilterCategories" ng-if="(f.FilterItems | filter : {IsSelected:true}).length > 0"
+                                    style="margin-bottom:5px;clear:both;margin-top:10px">
+                                    {{f.Title}}:
+                                    <span class="btn btn-info px-2 mx-1" style="padding:5px;color:#ffffff;background-color:#2E7777;margin-right:1px;"
+                                        ng-repeat="i in f.FilterItems | filter : {IsSelected:true}" ng-init="f.filterCatSelected = $index">
+                                        {{i.FilterItemTitle}} <span ng-click="SearchJob();i.IsSelected = false"><i
+                                                class="fa fa-close">
+                                            </i></span>
+                                    </span>
+                                    <br /><br />
                                 </span>
-                                <br /><br />
-                            </span>
 
-                        </div>
-                        <br />
-                        <div ng-if="Jobs.length<1">
-                            Please add or change search criteria for Search result.
-                        </div>
-                        <!-- <div>
+                            </div>
+                            <br />
+                            <div ng-if="Jobs.length<1">
+                                Please add or change search criteria for Search result.
+                            </div>
+                            <!-- <div>
                             {{(Jobs.length>1?Jobs.length+' Jobs' :'')}}
                         </div> -->
-                        <div ng-if="exists(Jobs)" style="border:1px solid rgba(102, 102, 102, 0.16)">
+                            <div ng-if="exists(Jobs)" style="border:1px solid rgba(102, 102, 102, 0.16)">
 
-                            <div dir-paginate="job in Jobs|itemsPerPage:4">
-                                <div>
-                                    <div class="" style="height:120px; padding:5px;margin:0px;" ng-class-odd="'odd'"
-                                        ng-class-even="'even'">
-                                        <span class="card-text" ng-repeat="q in job.questionField">
-                                            <p style="padding:10px; font-size:22px;" class="card-title text-primary"
-                                                ng-if="getQuestionProp(q.idField)=='Job Title'">
-                                                <a href="#">
-                                                    {{q.valueField}}
-                                                </a>
-                                                <br />
-                                            </p>
-                                            <!--<span class="mr-3" ng-if="getQuestionProp(q.idField)=='Job ID'">
+                                <div dir-paginate="job in Jobs|itemsPerPage:4">
+                                    <div>
+                                        <div class="" style="height:120px; padding:5px;margin:0px;" ng-class-odd="'odd'"
+                                            ng-class-even="'even'">
+                                            <span class="card-text" ng-repeat="q in job.questionField">
+                                                <p style="padding:10px; font-size:22px;" class="card-title text-primary"
+                                                    ng-if="getQuestionProp(q.idField)=='Job Title'">
+                                                    <a href="{{job.jobDetailLinkField}}" target="#">
+                                                        {{q.valueField}}
+                                                    </a>
+                                                    <br />
+                                                </p>
+                                                <!--<span class="mr-3" ng-if="getQuestionProp(q.idField)=='Job ID'">
                                                 <strong>{{getQuestionProp(q.idField)}} : </strong>{{q.valueField}}
                                             </span>-->
-                                            <span class="mr-3" style="padding:10px;" ng-if="getQuestionProp(q.idField)=='Job Title'">
-                                                Ti
-                                                <strong>{{getQuestionProp(q.idField)}} : </strong><span class="fliteritems">{{q.valueField}}</span>
+                                                <span class="mr-3" style="padding:10px;" ng-if="getQuestionProp(q.idField)=='Job Title'">
+                                                    <strong>{{getQuestionProp(q.idField)}} : </strong><span class="fliteritems">{{q.valueField}}</span>
+                                                </span>
+                                                <span class="mr-3" style="padding:10px;" ng-if="getQuestionProp(q.idField)=='Location'">
+                                                    <strong>{{getQuestionProp(q.idField)}} : </strong><span class="fliteritems">{{q.valueField}}</span>
+                                                </span>
                                             </span>
-                                            <span class="mr-3" style="padding:10px;" ng-if="getQuestionProp(q.idField)=='Location'">
-                                                <strong>{{getQuestionProp(q.idField)}} : </strong><span class="fliteritems">{{q.valueField}}</span>
-                                            </span>
-                                        </span>
-                                        <div style="clear:both">
-                                            <a href="{{job.jobDetailLinkField}}" target="#" class="applybutton">Apply
-                                                Job</a>
+                                            <div style="clear:both">
+                                                <a href="{{job.jobDetailLinkField}}" target="#" class="applybutton">Apply
+                                                    Job</a>
 
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
 
                             </div>
+                            <dir-pagination-controls max-size="10" direction-links="true" boundary-links="false" class="paginat">
 
-                        </div>
-                        <dir-pagination-controls max-size="10" direction-links="true" boundary-links="false" class="paginat">
-
-                        </dir-pagination-controls>
-                        <div ng-if="!exists(Jobs)">
-                        </div>
-                    </div>
-                </div>
-                <div class="filterContainer" style="margin-top:32px;margin-bottom: 5px;" ng-if="exists(Searchfilter.FilterCategories)">
-
-                    <div class="filterstyle">
-                        FILTER RESULTS
-                    </div>
-                    <div class="" ng-repeat="filter in Searchfilter.FilterCategories track by $index">
-
-                        <div class="collapsed card-header filtertitle" ng-click="collapseIt($index)" data-toggle="collapse"
-                            href="#collapse{{filter.Title}}">
-                            <a class="card-link" style="color:#fff;">
-                                <span class="card-title text-light text-left">
-                                    <b>{{filter.Title}}</b>
-
-                                    <i ng-if="collapseId!=$index" class=" fa fa-plus pull-right text-light"></i>
-                                    <i ng-if="collapseId==$index" class=" fa fa-minus pull-right text-light"></i>
-
-                                </span>
-
-                            </a>
-                        </div>
-                        <div id="collapse{{filter.Title}}" ng-show="collapseId==$index" class="" style="padding:2px; background-color: #C7C8CA"
-                            data-parent="#accordion">
-                            <div class="card-body" ng-if="filter.FilterItems != null">
-                                <ul class="list-group list-group-flush" ng-repeat="a in filter.FilterItems">
-                                    <li class="fliteritems" ng-if="a.FilterItemTitle!=null">
-                                        <input type="checkbox" class="checkboxCls" id="{{a.FilterItemTitle}}" ng-model="a.IsSelected"
-                                            autocomplete="off" class="text-left" ng-change='SearchJob()' />
-                                        <label for="{{a.FilterItemTitle}}" class="text-right">
-                                            {{a.FilterItemTitle}} ({{a.FilterItemResultCount}})
-                                        </label>
-                                    </li>
-
-                                </ul>
+                            </dir-pagination-controls>
+                            <div ng-if="!exists(Jobs)">
                             </div>
                         </div>
                     </div>
+                    <div class="filterContainer" style="margin-top:32px;margin-bottom: 5px;" ng-if="exists(Searchfilter.FilterCategories)">
 
-                    <div style="margin-top:5px">
-                        <a style=" font-size: 1.2rem;padding: 12px;width: 100%;margin: 0 auto;display: block;background:#00A8A8;color: #fff;border-radius: 5px;
-                               margin-top: 0px;text-align: center;" ng-click="clearFilter()">
-                            Clear Filter</a>
-                    </div>
-                    <div style="margin-top:5px">
-                        <a style=" font-size: 1.2rem;padding: 12px;width: 100%;margin: 0 auto;display: block;background:#00A8A8;color: #fff;border-radius: 5px;
+                        <div class="filterstyle">
+                            FILTER RESULTS
+                        </div>
+                        <div class="" ng-repeat="filter in Searchfilter.FilterCategories track by $index">
+
+                            <div class="collapsed card-header filtertitle" ng-click="collapseIt($index)" data-toggle="collapse"
+                                href="#collapse{{filter.Title}}">
+                                <a class="card-link" style="color:#fff;">
+                                    <span class="card-title text-light text-left">
+                                        <b>{{filter.Title}}</b>
+
+                                        <i ng-if="collapseId!=$index" class=" fa fa-plus pull-right text-light"></i>
+                                        <i ng-if="collapseId==$index" class=" fa fa-minus pull-right text-light"></i>
+
+                                    </span>
+
+                                </a>
+                            </div>
+                            <div id="collapse{{filter.Title}}" ng-show="collapseId==$index" class="" style="padding:2px; background-color: #C7C8CA"
+                                data-parent="#accordion">
+                                <div class="card-body" ng-if="filter.FilterItems != null">
+                                    <ul class="list-group list-group-flush" ng-repeat="a in filter.FilterItems">
+                                        <li class="fliteritems" ng-if="a.FilterItemTitle!=null">
+                                            <input type="checkbox" class="checkboxCls" id="{{a.FilterItemTitle}}"
+                                                ng-model="a.IsSelected" autocomplete="off" class="text-left" ng-change='SearchJob()' />
+                                            <label for="{{a.FilterItemTitle}}" class="text-right">
+                                                {{a.FilterItemTitle}} ({{a.FilterItemResultCount}})
+                                            </label>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:5px">
+                            <a style=" font-size: 1.2rem;padding: 12px;width: 100%;margin: 0 auto;display: block;background:#00A8A8;color: #fff;border-radius: 5px;
+                               margin-top: 0px;text-align: center;"
+                                ng-click="clearFilter()">
+                                Clear Filter</a>
+                        </div>
+                        <div style="margin-top:5px">
+                            <a style=" font-size: 1.2rem;padding: 12px;width: 100%;margin: 0 auto;display: block;background:#00A8A8;color: #fff;border-radius: 5px;
                                 margin-top: 0px;text-align: center;"><img
-                                src="Linkedin_logo.svg.png" /> Match jobs to your LinkedIn Profile</a>
+                                    src="Linkedin_logo.svg.png" /> Match jobs to your LinkedIn Profile</a>
+                        </div>
+
                     </div>
-
                 </div>
+
             </div>
-        </div>
-        <style>
+            <style>
 
-
-            /*[data-toggle="collapse"] .fa:before {
-                content: "\f146";
-            }
-
-            [data-toggle="collapse"].collapsed .fa:before {
-                content: "\f0fe";
-            }*/
-
-.filterstyle{
+                .filterstyle{
     width:100%; 
     margin:0 auto;
     background-color:#000000;
@@ -5506,39 +5500,50 @@
 
             /* end */
         </style>
-        <div class="container" style="margin-top:20px; clear: both">
-            <section class="featured-jobs">
-                <h2>Featured Jobs</h2>
-                <ul>
-                    <li>
-                        <a href="#/hr">
-                            <h3>Human Resources</h3>
-                            <p>Find jobs related to <span>Human Resources</span></p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#/Data">
+            <div class="container" style="margin-top:20px; clear: both" ng-if="exists(Jobs)">
+                <section class="featured-jobs">
+                    <h2>Featured Jobs</h2>
+                    <ul>
+                        <li>
+                            <a href="https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=29046"
+                                target="#">
+                                <h3>Human Resources</h3>
+                                <p>Find jobs related to <span>Human Resources</span></p>
+                            </a>
+                        </li>
+                        <!-- <li>
+                        <a href="#/Data" target="#">
                             <h3>Data Analytics</h3>
                             <p>Find jobs related to <span>Data Analytics</span></p>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#/category/technology-jobs/391-1635/26715/1">
-                            <h3>Technology</h3>
-                            <p>Find jobs related to <span>Technology</span></p>
-                        </a>    
-                    </li>
-                    <li>
-                        <a href="#/category/finance-jobs/391-1635/60487/1">
-                            <h3>Finance &amp; Accounting</h3>
-                            <p>Find jobs related to <span>Finance &amp; Accounting</span></p>
-                        </a>
-                    </li>
-                </ul>
+                    </li> -->
+                        <li>
+                            <a href="https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=29042"
+                                target="#">
+                                <h3>Technology</h3>
+                                <p>Find jobs related to <span>Technology</span></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=30388"
+                                target="#">
+                                <h3>Sales</h3>
+                                <p>Find jobs related to <span>Sales</span></p>
+                            </a>
+                        </li>
 
-            </section>
+                        <li>
+                            <a href="https://sjobs.brassring.com/TGnewUI/Search/home/HomeWithPreLoad?PageType=JobDetails&amp;partnerid=25253&amp;siteid=5584&amp;jobid=29926"
+                                target="#">
+                                <h3>Finance &amp; Accounting</h3>
+                                <p>Find jobs related to <span>Finance &amp; Accounting</span></p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </section>
+            </div>
         </div>
-
         <div class="container-padded" style="clear:both;margin-top:30px;">
             <div id="Main_C003_Col00" class="sf_colsIn cards offers" data-sf-element="Cards Container"
                 data-placeholder-label="Cards Container">
