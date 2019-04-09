@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://integrationuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://integrationuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://integrationuri.org/">
+      <s:element name="route">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inputXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="routeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="routeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="routeSoapIn">
+    <wsdl:part name="parameters" element="tns:route" />
+  </wsdl:message>
+  <wsdl:message name="routeSoapOut">
+    <wsdl:part name="parameters" element="tns:routeResponse" />
+  </wsdl:message>
+  <wsdl:message name="routeHttpGetIn">
+    <wsdl:part name="inputXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="routeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="routeHttpPostIn">
+    <wsdl:part name="inputXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="routeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="WebRouterSoap">
+    <wsdl:operation name="route">
+      <wsdl:input message="tns:routeSoapIn" />
+      <wsdl:output message="tns:routeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebRouterHttpGet">
+    <wsdl:operation name="route">
+      <wsdl:input message="tns:routeHttpGetIn" />
+      <wsdl:output message="tns:routeHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebRouterHttpPost">
+    <wsdl:operation name="route">
+      <wsdl:input message="tns:routeHttpPostIn" />
+      <wsdl:output message="tns:routeHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebRouterSoap" type="tns:WebRouterSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="route">
+      <soap:operation soapAction="http://integrationuri.org/route" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebRouterSoap12" type="tns:WebRouterSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="route">
+      <soap12:operation soapAction="http://integrationuri.org/route" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebRouterHttpGet" type="tns:WebRouterHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="route">
+      <http:operation location="/route" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebRouterHttpPost" type="tns:WebRouterHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="route">
+      <http:operation location="/route" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebRouter">
+    <wsdl:port name="WebRouterSoap" binding="tns:WebRouterSoap">
+      <soap:address location="http://stagingimport.brassring.com/WebRouter/WebRouter.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebRouterSoap12" binding="tns:WebRouterSoap12">
+      <soap12:address location="http://stagingimport.brassring.com/WebRouter/WebRouter.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebRouterHttpGet" binding="tns:WebRouterHttpGet">
+      <http:address location="http://stagingimport.brassring.com/WebRouter/WebRouter.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebRouterHttpPost" binding="tns:WebRouterHttpPost">
+      <http:address location="http://stagingimport.brassring.com/WebRouter/WebRouter.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

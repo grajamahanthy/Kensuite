@@ -425,8 +425,6 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
 
         private object hotJobsField;
 
-        private string jobDescriptionField;
-
         private EnvelopeUnitPacketPayloadInputStringProximitySearch proximitySearchField;
 
         private object jobMatchCriteriaTextField;
@@ -434,8 +432,6 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         private object selectedSearchLocaleIdField;
 
         private EnvelopeUnitPacketPayloadInputStringQuestions questionsField;
-
-        private string returnJobDetailQuesField;
 
         /// <remarks/>
         public ushort ClientId
@@ -516,19 +512,6 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         }
 
         /// <remarks/>
-        public string JobDescription
-        {
-            get
-            {
-                return this.jobDescriptionField;
-            }
-            set
-            {
-                this.jobDescriptionField = value;
-            }
-        }
-
-        /// <remarks/>
         public EnvelopeUnitPacketPayloadInputStringProximitySearch ProximitySearch
         {
             get
@@ -577,19 +560,6 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
             set
             {
                 this.questionsField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string ReturnJobDetailQues
-        {
-            get
-            {
-                return this.returnJobDetailQuesField;
-            }
-            set
-            {
-                this.returnJobDetailQuesField = value;
             }
         }
     }
@@ -837,8 +807,6 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
 
         private string lastUpdatedField;
 
-        private string jobDescriptionField;
-
         private string jobDetailLinkField;
 
         /// <remarks/>
@@ -882,19 +850,6 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         }
 
         /// <remarks/>
-        public string JobDescription
-        {
-            get
-            {
-                return this.jobDescriptionField;
-            }
-            set
-            {
-                this.jobDescriptionField = value;
-            }
-        }
-
-        /// <remarks/>
         public string JobDetailLink
         {
             get
@@ -915,13 +870,13 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
     public partial class EnvelopeUnitPacketPayloadResultSetJobQuestion
     {
 
-        private ushort idField;
+        private uint idField;
 
         private string valueField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort Id
+        public uint Id
         {
             get
             {
@@ -1174,4 +1129,6 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
             }
         }
     }
+
+
 }

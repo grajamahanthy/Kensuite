@@ -16,7 +16,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
 
     public class Question
     {
-        public int Id { get; set; }
+        public uint Id { get; set; }
         public string Title { get; set; }
         public string Type { get; set; }
         public string Watermark { get; set; }
@@ -28,7 +28,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
     {
         public string Title { get; set; }
         public List<FilterItem> FilterItems { get; set; }
-        public int Id { get; set; }
+        public uint Id { get; set; }
     }
 
     public class FilterItem

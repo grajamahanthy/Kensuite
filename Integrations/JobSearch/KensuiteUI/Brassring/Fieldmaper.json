@@ -1,0 +1,51 @@
+{
+    "ClientId": "26018",
+    "SearchFilter": [
+       {
+          "Id": "51782",
+          "Title": "JobTitle"
+       },
+       {
+          "Id": "37130",
+          "Title": "Job Role"
+       },
+       {
+          "Id": "109336",
+          "Title": "Location"
+       }
+    ],
+    "SearchKeyword": [
+       {
+          "Id": "51782",
+          "Title": "Keyword",
+          "Type": "text",
+          "Watermark": "Enter Job Title Or Keywords"
+       },
+       {
+          "Id": "109336",
+          "Title": "State",
+          "Type": "singleselect",
+          "Watermark": "State"
+       },
+       {
+          "Id": "109336",
+          "Title": "City",
+          "Type": "singleselect",
+          "Watermark": "City"
+       }
+    ],
+    "SearchResult": [
+       {
+          "Id": "51782",
+          "Title": "Job Title"
+       },
+       {
+          "Id": "109336",
+          "Title": "Location"
+       },
+       {
+          "Id": "8544",
+          "Title": "Job ID"
+       }
+    ]
+ }

@@ -4,33 +4,102 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 using KensuiteAPI.BrassRingJobs;
+using KensuiteAPI.StagingJobs;
 using KensuiteAPI.Areas.BrassRing.Jobs.Search.XmlMappers;
 using KensuiteAPI.Areas.BrassRing.Jobs.Search;
 using System.Configuration;
+using System.Net;
+using System.IO;
+using System.Text;
 
 namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
 {
     public class SearchData
     {
+        public string CallWebService(string URL, string requestMethod, string param)
+        {
+            string data = param; //replace <value>
+            byte[] dataStream = Encoding.UTF8.GetBytes(data);
+            WebRequest webRequest = WebRequest.Create(URL);
+            webRequest.Method = requestMethod;
+            webRequest.ContentType = "application/x-www-form-urlencoded";
+            webRequest.ContentLength = dataStream.Length;  
+            Stream newStream = webRequest.GetRequestStream();
+            newStream.Write(dataStream,0,dataStream.Length);
+            newStream.Close();
+            WebResponse webResponse = webRequest.GetResponse();
+
+            string result = "";
+            using (StreamReader sr = new StreamReader(webResponse.GetResponseStream()))
+            {
+                result = sr.ReadToEnd();
+                sr.Close();
+            }
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(result);
+            string encXml = doc.GetElementsByTagName("string")[0].InnerText;
+           // result = HttpUtility.HtmlDecode(encXml);
+            return encXml;
+        }
+
         //Search All Result
         public List<EnvelopeUnitPacketPayloadResultSetJob> GetAllData()
         {
-            BrassRingJobs.WebRouterSoapClient obj = new WebRouterSoapClient("WebRouterSoap");
-            // string data = obj.route("<Envelope version=\"01.00\"> <Sender><Id>12345</Id><Credential>25253</Credential></Sender> <TransactInfo transactId=\"1\" transactType=\"data\"><TransactId>01/27/2010</TransactId> <TimeStamp>12:00:00 AM</TimeStamp></TransactInfo> <Unit UnitProcessor=\"SearchAPI\"> <Packet> <PacketInfo packetType=\"data\"> <packetId>1</packetId></PacketInfo><Payload><InputString> <ClientId>25253</ClientId><SiteId>5700</SiteId> <PageNumber>1</PageNumber><OutputXMLFormat>0</OutputXMLFormat> <AuthenticationToken/><HotJobs/> <ProximitySearch><Distance/> <Measurement/> <Country/><State/> <City/><zipCode/> </ProximitySearch><JobMatchCriteriaText/> <SelectedSearchLocaleId/> <Questions> <Question Sortorder=\"ASC\" Sort=\"No\"> <Id>35992</Id> <Value> <![CDATA[TG_SEARCH_ALL]]></Value></Question></Questions></InputString> </Payload> </Packet> </Unit></Envelope>");
-            string data = obj.route("<Envelope version=\"01.00\"> <Sender><Id>12345</Id><Credential>25253</Credential></Sender> <TransactInfo transactId=\"1\" transactType=\"data\"><TransactId>01/27/2010</TransactId> <TimeStamp>12:00:00 AM</TimeStamp></TransactInfo> <Unit UnitProcessor=\"SearchAPI\"> <Packet> <PacketInfo packetType=\"data\"> <packetId>1</packetId></PacketInfo><Payload><InputString> <ClientId>25253</ClientId><SiteId>5584</SiteId> <PageNumber>1</PageNumber><OutputXMLFormat>0</OutputXMLFormat> <AuthenticationToken/><HotJobs/> <JobDescription>yes</JobDescription><ProximitySearch><Distance/> <Measurement/> <Country/><State/> <City/><zipCode/> </ProximitySearch><JobMatchCriteriaText/> <SelectedSearchLocaleId/> <Questions> <Question Sortorder=\"ASC\" Sort=\"No\"> <Id>35992</Id> <Value> <![CDATA[TG_SEARCH_ALL]]></Value></Question></Questions><ReturnJobDetailQues>1671,1653,59081,53211,35992</ReturnJobDetailQues></InputString> </Payload> </Packet> </Unit></Envelope>");
-            data = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>" + data;
+            bool server = Boolean.Parse(ConfigurationManager.AppSettings.Get("ServerSource"));
+            string data = null;
+            bool IsProduction = Boolean.Parse(ConfigurationManager.AppSettings.Get("ServerSource"));
+            string Fieldmapper = IsProduction ? "FieldMapper" : "FieldMapper_staging";
+            XmlDocument doc = new XmlDocument();
+            string fmPath = ConfigurationManager.AppSettings.Get(Fieldmapper);
+            doc.Load(fmPath);
+            XmlNodeList xmlNodeList = doc.SelectNodes("Config/Jobs/InputFeed");
+            string FieldMapData = xmlNodeList[0].InnerXml;
+
+            XmlNodeList xmlNodeurl = doc.SelectNodes("Config/Jobs/Url");
+            string Url = xmlNodeurl[0].InnerText;
+
+            data = CallWebService(Url, "POST", "inputXml=" + FieldMapData);
+            //if (server)
+            //{
+                //BrassRingJobs.WebRouterSoapClient obj = new BrassRingJobs.WebRouterSoapClient("WebRouterSoap");
+                // string data = obj.route("<Envelope version=\"01.00\"> <Sender><Id>12345</Id><Credential>25253</Credential></Sender> <TransactInfo transactId=\"1\" transactType=\"data\"><TransactId>01/27/2010</TransactId> <TimeStamp>12:00:00 AM</TimeStamp></TransactInfo> <Unit UnitProcessor=\"SearchAPI\"> <Packet> <PacketInfo packetType=\"data\"> <packetId>1</packetId></PacketInfo><Payload><InputString> <ClientId>25253</ClientId><SiteId>5700</SiteId> <PageNumber>1</PageNumber><OutputXMLFormat>0</OutputXMLFormat> <AuthenticationToken/><HotJobs/> <ProximitySearch><Distance/> <Measurement/> <Country/><State/> <City/><zipCode/> </ProximitySearch><JobMatchCriteriaText/> <SelectedSearchLocaleId/> <Questions> <Question Sortorder=\"ASC\" Sort=\"No\"> <Id>35992</Id> <Value> <![CDATA[TG_SEARCH_ALL]]></Value></Question></Questions></InputString> </Payload> </Packet> </Unit></Envelope>");
+                //data = obj.route(FieldMapData);
+                data = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>" + data;
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        StagingJobs.WebRouterSoapClient obj = new StagingJobs.WebRouterSoapClient("WebRouterSoap");
+            //        data = obj.route(FieldMapData);
+            //        data = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>" + data;
+            //    }
+            //    catch (Exception ex)
+            //    {
+
+            //    }
+
+            //}
 
             ////////////////////////////////////////////////////////Get Search Result 
             //Loading Result XML
-            XmlDocument searchResultXml = new XmlDocument();
-            searchResultXml.LoadXml(data);
-            XmlNodeList resultDoc = searchResultXml.GetElementsByTagName("Jobs")[0].ChildNodes;
-            //Converting Result XML to C# Object
-            string ResultData = searchResultXml.InnerXml;
-            SerializeDeserialize<Envelope> SearchResultSerializer = new SerializeDeserialize<Envelope>();
-            Envelope SearchResults = SearchResultSerializer.DeserializeData(ResultData);
 
-            return SearchResults.Unit.Packet.Payload.ResultSet.Jobs.ToList();
+            try
+            {
+                XmlDocument searchResultXml = new XmlDocument();
+                searchResultXml.LoadXml(data);
+                XmlNodeList resultDoc = searchResultXml.GetElementsByTagName("Jobs")[0].ChildNodes;
+                //Converting Result XML to C# Object
+                string ResultData = searchResultXml.InnerXml;
+                SerializeDeserialize<Envelope> SearchResultSerializer = new SerializeDeserialize<Envelope>();
+                Envelope SearchResults = SearchResultSerializer.DeserializeData(ResultData);
+                return SearchResults.Unit.Packet.Payload.ResultSet.Jobs.ToList();
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+            
         }
 
         //Field Mapper
@@ -38,11 +107,15 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         {
             ////////////////////////////////////////////////////////Get Field Mapper 
             //Loading Field Mapper XML
+            bool IsProduction = Boolean.Parse(ConfigurationManager.AppSettings.Get("ServerSource"));
+            string Fieldmapper = IsProduction ? "FieldMapper" : "FieldMapper_staging";
             XmlDocument doc = new XmlDocument();
-            string fmPath = ConfigurationManager.AppSettings.Get("FieldMapper");
+            string fmPath = ConfigurationManager.AppSettings.Get(Fieldmapper);
             doc.Load(fmPath);
+            XmlNodeList xmlNodeList = doc.SelectNodes("Config/Jobs/FieldMapper");
+            string FieldMapData = xmlNodeList[0].InnerXml;
             //Converting Field Mapper XML to C# Object
-            string FieldMapData = doc.InnerXml;
+          //  string FieldMapData = doc.InnerXml;
             SerializeDeserialize<FieldMap> FieldMapSerializer = new SerializeDeserialize<FieldMap>();
             FieldMap FieldMapResults = FieldMapSerializer.DeserializeData(FieldMapData);
 
@@ -52,7 +125,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         //Search By Filter
         public Search getJobsBySearch(SearchUi searchui)
         {
-           // GetHotJobs();
+            // GetHotJobs();
             List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData();
             FieldMap fieldMapper = GetFieldMapper();
             Search srch = new Search();
@@ -73,7 +146,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
                                             (Convert.ToString(r.Value == null ? "" : r.Value).ToLower()).Contains(Convert.ToString(q.SearchKey).Trim().ToLower())).Count() > 0)));
                 }
             }
-            List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults = (searchui.IsHotJob ? (res.Where(y=>y.HotJob.ToLower() =="yes").ToList()) : res.ToList());
+            List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults = (searchui.IsHotJob ? (res.Where(y => y.HotJob.ToLower() == "yes").ToList()) : res.ToList());
 
             ////Get Search Results By Filter
             bool IsFilterCatExist = false;
@@ -175,10 +248,10 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
             try
             {
                 SearchUi uiObj = new SearchUi();
-               
-                    List<FilterCategory> lstFc = GetLeftFilter(fieldMapper, jobs, filterCats, false);
-                    uiObj.FilterCategories = lstFc;
-               
+
+                List<FilterCategory> lstFc = GetLeftFilter(fieldMapper, jobs, filterCats, false);
+                uiObj.FilterCategories = lstFc;
+
 
                 List<FilterCategory> featuredLstFc = GetLeftFilter(fieldMapper, jobs, filterCats, true);
                 uiObj.FeaturedFilterCategories = featuredLstFc;
@@ -197,7 +270,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
 
                 return uiObj;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new SearchUi();
             }
@@ -242,17 +315,17 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         public SearchUi GetHotJobs()
         {
             SearchUi uiObj = new SearchUi();
-            
+
             FieldMap fieldMapper = GetFieldMapper();
             List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData();
             IEnumerable<EnvelopeUnitPacketPayloadResultSetJob> res = searchDataSource;
-            List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults =res.Where(y=>y.HotJob.ToLower() =="yes").ToList();
+            List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults = res.Where(y => y.HotJob.ToLower() == "yes").ToList();
             List<FilterCategory> obj = null;
             List<FilterCategory> lstFc = GetLeftFilter(fieldMapper, filterItemResults, obj, false);
             uiObj.FilterCategories = lstFc;
 
             List<FilterCategory> featuredLstFc = GetLeftFilter(fieldMapper, filterItemResults, obj, true);
-            uiObj.FeaturedFilterCategories= featuredLstFc;
+            uiObj.FeaturedFilterCategories = featuredLstFc;
             return uiObj;
         }
 

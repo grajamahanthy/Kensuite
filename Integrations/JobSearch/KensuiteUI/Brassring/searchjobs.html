@@ -21,6 +21,11 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
     <script src="Scripts/bootstrap.min.js"></script>
     <style>
+       .filterscroll 
+       {
+            height:400px; 
+            overflow: auto;
+       }
         .searchBtn {
             position: relative;
             margin-top: -60px;
@@ -273,11 +278,11 @@
                 </div>
 
                 <div ng-if="exists(Jobs)">
-                    <div dir-paginate="job in Jobs|itemsPerPage:4|filter:Searchfilter.IsHotJob?{questionField:{'idField':idField,'valueField':valuefield}}: null">
+                         
+                <div dir-paginate="job in Jobs|itemsPerPage:5|filter:Searchfilter.IsHotJob?{questionField:{'idField':idField,'valueField':valuefield}}: ''">
                         <div class="card w-100 border-default  mb-2 ">
                             <div class="card-body">
                                 <span class="card-text" ng-repeat="q in job.questionField">
-                                  
                                     <h3 class="card-title text-primary" ng-if="getQuestionProp(q.idField)=='Job Title'">
                                         <a href="{{job.jobDetailLinkField}}" target="#">
                                             {{q.valueField}}
@@ -339,7 +344,7 @@
                             </div>
                             <div id="collapse{{filter.Title.replace(' ','')}}" ng-show="collapseId==$index" class=""
                                 data-parent="#accordion">
-                                <div class="card-body" ng-if="filter.FilterItems != null">
+                                <div class="card-body filterscroll"  ng-if="filter.FilterItems != null">
                                     <ul class="list-group list-group-flush" ng-repeat="a in filter.FilterItems">
                                         <li class="list-group-item" ng-if="a.FilterItemTitle!=null">
                                             <input type="checkbox" id="{{a.FilterItemTitle}}" ng-model="a.IsSelected"
@@ -348,17 +353,13 @@
                                                 {{a.FilterItemTitle}} ({{a.FilterItemResultCount}})
                                             </label>
                                             <!--<a href="#" ng-click="myFunc()">{{a.FilterItemTitle}} ({{a.FilterItemResultCount}})</a>-->
-
-
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <diV class="card my-2 text-center" ng-click="clearFilter()">
                             <button class=" btn btn-info">
-
                                 <h5> Clear Filter</h5>
                             </button>
                         </diV>

@@ -24,6 +24,14 @@ namespace KensuiteAPI.Controllers
           //  return Newtonsoft.Json.JsonConvert.SerializeObject(alldata);
             return sobj.getJobsBySearch(searchUi);
         }
+        // GET: api/Jobs
+        [HttpGet]
+        public List<EnvelopeUnitPacketPayloadResultSetJob> GetAllResult()
+        {
+            SearchData searchData  = new SearchData();
+            List<EnvelopeUnitPacketPayloadResultSetJob> list= searchData.GetAllData();
+            return list;
+        }
 
         [HttpGet]
         public KensuiteAPI.Areas.BrassRing.Jobs.Search.Search GetSearchKeyword()

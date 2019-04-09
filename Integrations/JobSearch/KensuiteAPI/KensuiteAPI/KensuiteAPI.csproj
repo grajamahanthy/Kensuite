@@ -200,6 +200,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\StagingJobs\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\FoundationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
@@ -213,6 +218,11 @@
     <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\FieldMapper.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\FieldMapper_staging.xml" />
+    <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\Production\integrations\production.xml" />
+    <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\p_inputFeed.xml" />
+    <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\Staging\integrations\staging.xml" />
+    <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\s_inputFeed.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <None Include="Connected Services\BrassRingJobs\configuration91.svcinfo" />
     <None Include="Connected Services\BrassRingJobs\configuration.svcinfo" />
@@ -223,6 +233,12 @@
     <None Include="Connected Services\Foundation\configuration91.svcinfo" />
     <None Include="Connected Services\Foundation\configuration.svcinfo" />
     <None Include="Connected Services\Foundation\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\StagingJobs\configuration91.svcinfo" />
+    <None Include="Connected Services\StagingJobs\configuration.svcinfo" />
+    <None Include="Connected Services\StagingJobs\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -258,6 +274,7 @@
     </Content>
     <None Include="Connected Services\BrassRingJobs\WebRouter.wsdl" />
     <None Include="Connected Services\Foundation\DispatchMessage.wsdl" />
+    <None Include="Connected Services\StagingJobs\WebRouter.wsdl" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -304,6 +321,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\BrassRingJobs\" />
     <WCFMetadataStorage Include="Connected Services\Foundation\" />
+    <WCFMetadataStorage Include="Connected Services\StagingJobs\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

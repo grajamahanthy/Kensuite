@@ -85,12 +85,12 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search.XmlMappers
     public partial class FieldMapFilterQuestion
     {
 
-        private ushort idField;
+        private uint idField;
 
         private string titleField;
 
         /// <remarks/>
-        public ushort Id
+        public uint Id
         {
             get
             {
@@ -123,7 +123,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search.XmlMappers
     public partial class FieldMapKeywordQuestion
     {
 
-        private ushort idField;
+        private uint idField;
 
         private string titleField;
 
@@ -132,7 +132,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search.XmlMappers
         private string watermarkField;
 
         /// <remarks/>
-        public ushort Id
+        public uint Id
         {
             get
             {
@@ -191,12 +191,12 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search.XmlMappers
     public partial class FieldMapResultQuestion
     {
 
-        private ushort idField;
+        private uint idField;
 
         private string titleField;
 
         /// <remarks/>
-        public ushort Id
+        public uint Id
         {
             get
             {
@@ -223,5 +223,5 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search.XmlMappers
     }
 
 
-
 }
+
