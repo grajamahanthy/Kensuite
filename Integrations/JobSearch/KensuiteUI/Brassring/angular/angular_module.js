@@ -12,10 +12,11 @@ var app = angular
         $scope.ctrlSearchfilter = {};
         $scope.stateOption = '';
         $scope.contryOption = '';
+        //true for server, false for local 
         $scope.isNotPerf = false;
         $scope.productionserver = false;
         $scope.apiBase = 'https://kensuitejobsearchapi.warmcall.com';
-        $scope.apiBase = 'http://localhost:54920';
+        // $scope.apiBase = 'http://localhost:54920';
 
         $scope.onchange = function (ketType, key) {
             // console.log(ketType);
@@ -51,30 +52,43 @@ var app = angular
 
             //Clearing Filter
             var catArr = $scope.Searchfilter.FilterCategories;
-            for (var i = 0; i < catArr.length; i++) {
-                var filterArr = catArr[i].FilterItems;
-                for (var j = 0; j < filterArr.length; j++) {
-                    {
-                        filterArr[j].isSelected = false;
+
+            if (catArr != undefined) {
+                for (var i = 0; i < catArr.length; i++) {
+                    var filterArr = catArr[i].FilterItems;
+                    for (var j = 0; j < filterArr.length; j++) {
+                        {
+                            filterArr[j].IsSelected = false;
+                        }
                     }
                 }
             }
-
             //Search Results update after clearing Filter
             $scope.SearchJob();
         }
 
 
         $scope.featuredjobs = function (id, value) {
+
             $scope.idField = id;
             $scope.valuefield = value;
             $scope.clearFilter();
-            if (value == '') {
-                $scope.Searchfilter.IsHotJob = (value != '') ? $scope.Searchfilter.IsHotJob : !$scope.Searchfilter.IsHotJob;
+            if (!$scope.isNotPerf) {
+                var SearchUi = new Object();  //{ "FilterCategories": $scope.Searchfilter, "KeyWord": $scope.keyword, "Location": $scope.LocationName };
+                SearchUi = $scope.Searchfilter;
+                jobresult = getJobsBysearch(SearchUi, $scope.ctrlSearchQuestions, $scope.alldata, true);
+                $scope.Jobs = jobresult;
             }
             else {
                 $scope.Searchfilter.IsHotJob = true;
             }
+            // if (value == '') {
+            //     $scope.Searchfilter.IsHotJob = (value != '') ? $scope.Searchfilter.IsHotJob : !$scope.Searchfilter.IsHotJob;
+            // }
+            // else {
+            //     $scope.Searchfilter.IsHotJob = true;
+            // }
+
         }
 
         ///check box show
@@ -127,16 +141,22 @@ var app = angular
                     $scope.Searchfilter = data.SearchFilter;
                     $scope.ctrlSearchQuestions = $scope.Searchfilter.SearchQuestions;
 
+                    if ($scope.Searchfilter) {
+                        $scope.getFeturedJobs();
+                    }
                 });
+//
+                $http.get('Fieldmaper.json').then(function (response) {
+                    // console.log(response.data);
+                    $scope.Locationdata = response.data.SearchLocation;
+                });
+
         }
 
         $scope.getFeturedJobs = function () {
             $http.get($scope.apiBase + '/api/jobs/GetFeturedJobs')
-                // $http.get('https://kensuitejobsearchapi.warmcall.com/api/default/GetSearchKeyword')
                 .then(function (response) {
                     var data = response.data;
-                    // console.log(data.FeaturedFilterCategories);
-
                     $scope.Searchfilter.FeaturedFilterCategories = data.FeaturedFilterCategories;
                     $scope.Searchfilter.FilterCategories = data.FilterCategories;
 
@@ -144,13 +164,10 @@ var app = angular
         }
 
         $scope.getSearchResults = function (SearchUi) {
-            // $http.post('https://kensuitejobsearchapi.warmcall.com/api/default/GetAllResult', SearchUi)
             $http.post($scope.apiBase + '/api/jobs/GetAllResult', SearchUi)
 
                 .then(function (response) {
-                    // console.log(response.data);
                     $scope.Result = response.data;
-
                     $scope.Jobs = $scope.Result.SearchResult;
 
                     $scope.Searchfilter = $scope.Result.SearchFilter;
@@ -159,12 +176,11 @@ var app = angular
         }
 
 
-
         $scope.loadsearchUiAndFeaturedJobs = function () {
 
             if ($scope.isNotPerf) {
                 $scope.getSearchKeywords();
-                $scope.getFeturedJobs();
+                // $scope.getFeturedJobs();
             }
             else {
                 $scope.getallJobs();
@@ -178,14 +194,16 @@ var app = angular
 
         $scope.SearchJob = function (filter) {
             //All Data
-            //console.log(filter);
+            // console.log(filter+'filter');
 
             $scope.Searchfilter.SearchQuestions = (filter == null ? $scope.ctrlSearchQuestions : $scope.Searchfilter.SearchQuestions);
+            $scope.Searchfilter.IsHotJob = false;
 
             var SearchUi = new Object();  //{ "FilterCategories": $scope.Searchfilter, "KeyWord": $scope.keyword, "Location": $scope.LocationName };
             SearchUi = $scope.Searchfilter;
 
             if ($scope.isNotPerf) {
+
                 $scope.getSearchResults(SearchUi);
             }
             else {
@@ -201,14 +219,25 @@ var app = angular
 
             // var fieldmapperName=($scope.isNotPerf)?'Fieldmaper.json':'Fieldmaper.json';
             // console.log(fieldmapperName);
+            //$http.get('Fieldmapper_production.json').then(function (response) {
             $http.get('Fieldmaper.json').then(function (response) {
-                // console.log(response.data);
-                $scope.Searchfilter = response.data.SearchFilter;
+                //  console.log(response.data);
+                $scope.Searchfilter = response.data;
                 $scope.ctrlSearchQuestions = response.data.SearchKeyword;
                 $scope.FieldMapper = response.data;
-
+                $scope.Locationdata = response.data.SearchLocation;
             });
 
+            $http.get($scope.apiBase + '/api/jobs/GetFeturedJobs')
+                // $http.get('https://kensuitejobsearchapi.warmcall.com/api/default/GetSearchKeyword')
+                .then(function (response) {
+                    var data = response.data;
+                    // console.log(data.FeaturedFilterCategories);
+
+                    $scope.Searchfilter.FeaturedFilterCategories = data.FeaturedFilterCategories;
+                    //  $scope.Searchfilter.FilterCategories = data.FilterCategories;
+
+                });
         }
 
         $scope.getallJobs = function () {
@@ -219,7 +248,7 @@ var app = angular
 
         $scope.getSearchResults_local = function (SearchUi) {
 
-            var jobresult = getJobsBysearch(SearchUi, $scope.ctrlSearchQuestions, $scope.alldata)
+            var jobresult = getJobsBysearch(SearchUi, $scope.ctrlSearchQuestions, $scope.alldata, false)
 
             var isFilter = SearchUi.FilterCategories == null ? false : true;
             $scope.Jobs = jobresult;
@@ -227,7 +256,9 @@ var app = angular
                 var searchfilter = GetLeftFilter($scope.FieldMapper, $scope.alldata, false, SearchUi);
                 $scope.Searchfilter.FilterCategories = searchfilter;
                 //$scope.Searchfilter = $scope.Result.SearchFilter;
+
             }
+
         }
 
         /* Performance */
@@ -237,9 +268,27 @@ var app = angular
     });
 
 
-getJobsBysearch = function (SearchUi, fieldmaper, alljobs) {
+getJobsBysearch = function (SearchUi, fieldmaper, alljobs, isFeaturedJob) {
 
-    //console.log(SearchUi.FilterCategories);
+    SearchUi.IsHotJob = (isFeaturedJob == true);
+
+    // console.log(SearchUi.IsHotJob);
+
+    var jobs = [];
+    if (SearchUi.IsHotJob) {
+        var data = alljobs.filter(function (r) {
+            if (r.hotJobField.toLowerCase() == 'yes') {
+                jobs.push(r);
+            }
+        })
+        alljobs = jobs;
+    }
+
+    if (SearchUi.IsHotJob && typeof SearchUi.IsHotJob != undefined) {
+        // console.log(SearchUi.IsHotJob);
+    } else {
+        // console.log(SearchUi.IsHotJob);
+    }
 
     var searchkeycount = 0;
 
@@ -253,54 +302,104 @@ getJobsBysearch = function (SearchUi, fieldmaper, alljobs) {
     // console.log(searchkeycount);
     var searchKeysExist = false;
     searchKeysExist = SearchUi.SearchQuestions != null && SearchUi.SearchQuestions.length > 0 && searchkeycount > 0;
-
+    // console.log(SearchUi.SearchQuestions);
     if (searchKeysExist) {
+
         for (i = 0; i < SearchUi.SearchQuestions.length; i++) {
             if (SearchUi.SearchQuestions[i].SearchKey) {
                 var data = [];
                 result = alljobs.filter(function (r) {
-                    for (j = 0; j < r.questionField.length; j++) {
-                        if (r.questionField[j].idField == SearchUi.SearchQuestions[i].Id && ((r.questionField[j].valueField == null ? '' : r.questionField[j].valueField).toLowerCase().includes(SearchUi.SearchQuestions[i].SearchKey.toLowerCase()))) {
-                            data.push(r);
+
+                    // for (j = 0; j < r.questionField.length; j++) {
+                    r.questionField.map(function (res) {
+                    //    console.log(SearchUi.SearchQuestions[i].IsSearchAll);
+                        if (SearchUi.SearchQuestions[i].IsSearchAll == 'yes') {
+
+                            // console.log((res.valueField == null ? '' : res.valueField).toLowerCase().includes(SearchUi.SearchQuestions[i].SearchKey.toLowerCase()));
+                            if ((res.valueField == null ? '' : res.valueField).toLowerCase().includes(SearchUi.SearchQuestions[i].SearchKey.toLowerCase())) {
+                                data.push(r);
+                                // console.log(r)
+                            }
+
+                        } else {
+                            if (res.idField == SearchUi.SearchQuestions[i].Id && ((res.valueField == null ? '' : res.valueField).toLowerCase().includes(SearchUi.SearchQuestions[i].SearchKey.toLowerCase()))) {
+                                data.push(r);
+                            }
                         }
-                    }
+                    })
+                    // }
                 })
                 alljobs = data.length > 0 ? data : data;
             }
         }
+
+
+
+
+        // for (i = 0; i < SearchUi.SearchQuestions.length; i++) {
+        //     if (SearchUi.SearchQuestions[i].SearchKey) {
+        //         var data = [];
+        //         result = alljobs.filter(function (r) {
+
+        //             for (j = 0; j < r.questionField.length; j++) {
+        //                 if (r.questionField[j].idField == SearchUi.SearchQuestions[i].Id && ((r.questionField[j].valueField == null ? '' : r.questionField[j].valueField).toLowerCase().includes(SearchUi.SearchQuestions[i].SearchKey.toLowerCase()))) {
+        //                     data.push(r);
+        //                 }
+        //             }
+        //         })
+        //         alljobs = data.length > 0 ? data : data;
+        //     }
+        // }
+
     }
 
     var IsFilterCatExist = false;
     if (SearchUi.FilterCategories != null) {
         SearchUi.FilterCategories.filter(function (r) {
-            console.log()
+            // console.log()
             var count = 0;
             for (j = 0; j < r.FilterItems.length; j++) {
                 if (r.FilterItems[j].IsSelected) { count++; }
             }
-            if (count > 0) { IsFilterCatExist = !IsFilterCatExist; }
+            if (count > 0) { IsFilterCatExist = true; }
         })
     }
-    console.log(IsFilterCatExist);    
+    //  console.log(IsFilterCatExist + '-------');
 
     if (IsFilterCatExist) {
-        for (i = 0; i < SearchUi.FilterCategories.length; i++) {
-            console.log(SearchUi.FilterCategories);
-            console.log(SearchUi.FilterCategories[i]);
 
-            result = alljobs.filter(function (r) {
-                
-                for (j = 0; j < r.questionField.length; j++) {
-                    if (SearchUi.FilterCategories[i].FilterItems[j].IsSelected) {
-                        console.log(SearchUi.FilterCategories[i].FilterItems[j].FilterItemTitle);
-                        console.log(SearchUi.FilterCategories[i].Id);
+        res = SearchUi.FilterCategories.filter(function (r) {
+            var data = [];
+            for (i = 0; i < r.FilterItems.length; i++) {
 
+                result = alljobs.filter(function (k) {
+                    // console.log(r.FilterItems);
+                    if (r.FilterItems[i].IsSelected) {
+                        // console.log(r.FilterItems[i].FilterItemTitle + '' + r.Id)
+
+                        for (j = 0; j < k.questionField.length; j++) {
+                            if (k.questionField[j].idField == r.Id && k.questionField[j].valueField == r.FilterItems[i].FilterItemTitle) {
+                                data.push(k);
+
+                            }
+                        }
                     }
-                   
+                })
+
+            }
+            alljobs = data.length > 0 ? data : alljobs;
+
+        })
+        // console.log(alljobs);
+
+        for (i = 0; i < SearchUi.FilterCategories.length; i++) {
+            var data = [];
+            result = alljobs.filter(function (r) {
+                for (j = 0; j < r.questionField.length; j++) {
+                    // console.log(SearchUi.FilterCategories[i].FilterItems[j].IsSelected);
+
                 }
-
             })
-
         }
 
 
@@ -308,14 +407,15 @@ getJobsBysearch = function (SearchUi, fieldmaper, alljobs) {
     }
 
 
-
+    // console.log(alljobs);
 
     return alljobs;
 }
 
 GetLeftFilter = function (fieldMapper, jobs, isHotJob, searchUi) {
     //  console.log(searchUi.FilterCategories);
-
+    // console.log(fieldMapper);
+    // console.log(jobs);
 
     var filterjob = [];
     if (isHotJob) {
@@ -377,3 +477,4 @@ GetLeftFilter = function (fieldMapper, jobs, isHotJob, searchUi) {
     return Filter_data;
 
 }
+

@@ -45,7 +45,7 @@
                     <Value><![CDATA[TG_SEARCH_ALL]]></Value>
                   </Question>
                 </Questions>
-                <ReturnJobDetailQues></ReturnJobDetailQues>
+                <ReturnJobDetailQues>48766</ReturnJobDetailQues>
               </InputString>
             </Payload>
           </Packet>
@@ -61,7 +61,7 @@
             <Title>JobTitle</Title>
           </FilterQuestion>
           <FilterQuestion>
-            <Id>48784</Id>
+            <Id>48766</Id>
             <Title>Job Role</Title>
           </FilterQuestion>
           <FilterQuestion>

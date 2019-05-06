@@ -21,6 +21,7 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         public string Type { get; set; }
         public string Watermark { get; set; }
         public string SearchKey { get; set; }
+        public string IsSearchAll { get; set; }
         public List<location> location { get; set; }
     }
 

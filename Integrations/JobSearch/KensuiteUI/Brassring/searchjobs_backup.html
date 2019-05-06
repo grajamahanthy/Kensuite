@@ -14,8 +14,8 @@
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/dirPagination.js"></script>
     <script src="./angular/angular_module.js"></script>
-    <!-- <script data-require="angular-ui-bootstrap@0.3.0" data-semver="0.3.0"
-        src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.min.js"></script> -->
+    <script data-require="angular-ui-bootstrap@0.3.0" data-semver="0.3.0"
+        src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.min.js"></script>
 
     <script src="Scripts/esm/popper.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
@@ -204,34 +204,62 @@
 <body ng-app="myModule" ng-cloak ng-controller="myController">
 
     <div class="container" style="border:1px solid #808080;border-radius:9px">
-        <div class="mb-5 mt-5 col-md-10 mx-auto">
-            <form class="row">
-                <div ng-repeat="q in ctrlSearchQuestions" class="col">
-                    <div ng-if="q.Type=='text'" class="form-group">
-                        <label>Keyword</label>
-                        <input type="text" class="form-control" id="{{q.Id}}" placeholder="{{q.Watermark}}"
-                            ng-model="q.SearchKey" autocomplete="false">
-                    </div>
-                    <div ng-if="q.Type=='singleselect'" class="form-group ">
-                        <label>Location</label>
-                        <input type="text" class="form-control" id="tbCountries" autocomplete="false" placeholder="{{q.Watermark}}"
-                            ng-model="q.SearchKey" list="loc_list">
-                        <datalist id="loc_list" class="ui-autocomplete">
-                            <option value=''></option>{{Locationdata}}
-                            <option ng-repeat="location in Locationdata| filter:loc" value="{{location.Description}}">
-                            </option>
-                        </datalist>
-                    </div>
-                </div>
+        <div class="row mb-5 mt-5">
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <form>
 
-                <div class="pull-right mt-4">
-                    <button type="submit" id="btnSearch" ng-click="SearchJob()"
-                        class="btn  btn-lg btn-primary">Search</button>
-                </div>
-                <!-- <div>
+
+                    <!-- -->
+
+                    <div ng-repeat="q in ctrlSearchQuestions">
+
+                        <div ng-if="q.Type=='text'" class="form-group">
+                            <label>Keyword</label>
+                            <input type="text" class="form-control" id="{{q.Id}}" placeholder="{{q.Watermark}}"
+                                ng-model="q.SearchKey">
+                        </div>
+                    </div>
+                    <div class="form-row">
+
+                        <div class="form-group col-md-4" ng-if="exists(ctrlSearchQuestions) ">
+
+                            <label>Country </label>
+                            <select ng-model="contryOption" class="form-control" ng-change="onchange(2,contryOption)">
+                                <option value="" selected="selected">Select Country</option>
+                                <option ng-repeat="country in Countrys" value="{{country.name}}">{{country.name}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div ng-repeat="q in ctrlSearchQuestions" ng-if="q.Type=='singleselect'">
+
+                            <div class="form-group col-md-12 ml-1" ng-if="q.Title=='State'">
+                                <label>State </label>
+                                <select ng-model="q.SearchKey" class="form-control" ng-change="onchange(1,q.SearchKey)">
+                                    <option value="">Select State</option>
+                                    <option ng-repeat="state in states[contryOption]" value="{{state.shortname}}">
+                                        {{state.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12 ml-1" ng-if="q.Title=='City'">
+                                <label>City </label>
+                                <select ng-model="q.SearchKey" class="form-control">
+                                    <option value="">Select City</option>
+                                    <option ng-repeat="city in Cities[stateOption]">{{city.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="pull-right" style="margin-left:10px">
+                        <button type="submit" id="btnSearch" ng-click="SearchJob()"
+                            class="btn  btn-lg btn-primary searchBtn">Search</button>
+                    </div>
+                    <!-- <div>
                         <input type="checkbox" id="hotjob" ng-model="Searchfilter.IsHotJob" ng-click="featuredjobs('','')" /> <span>Hot Jobs</span>
                     </div> -->
-            </form>
+                </form>
+            </div>
 
         </div>
 
@@ -243,7 +271,7 @@
                         ng-if="(f.FilterItems | filter : {IsSelected:true}).length > 0">
                         <!--ng-if="f.filterCatSelected != undefined && f.filterCatSelected != null && f.filterCatSelected >= 0"-->
                         <div class="clearfix">
-                            {{f.Title}}:
+                            {{f.Title}}:sdsadas
                             <div class="btn btn-info px-1 mx-1 my-1"
                                 ng-repeat="i in f.FilterItems | filter : {IsSelected:true}"
                                 ng-init="f.filterCatSelected = $index">
@@ -256,8 +284,10 @@
                 </div>
 
                 <div ng-if="exists(Jobs)">
+
                     <div
-                        dir-paginate="job in Jobs|filter:Searchfilter.IsHotJob?{questionField:{'idField':idField,'valueField':valuefield}}: ''|itemsPerPage:5">
+                        dir-paginate="job in Jobs|itemsPerPage:5|filter:Searchfilter.IsHotJob?{questionField:{'idField':idField,'valueField':valuefield}}: ''">
+
                         <div class="card w-100 border-default  mb-2 ">
                             <div class="card-body">
                                 <span class="card-text" ng-repeat="q in job.questionField">
@@ -284,9 +314,11 @@
 
 
                     </div>
-                    <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true">
+                    <div>
+                        <dir-pagination-controls max-size="10" direction-links="true" boundary-links="true">
 
-                    </dir-pagination-controls>
+                        </dir-pagination-controls>
+                    </div>
                 </div>
                 <div ng-if="!exists(Jobs)">
                     Please add or change search criteria for Search result.
@@ -324,7 +356,7 @@
                             <div id="collapse{{filter.Title.replace(' ','')}}" ng-show="collapseId==$index" class=""
                                 data-parent="#accordion">
                                 <div class="card-body filterscroll" ng-if="filter.FilterItems != null">
-                                    <ul class="list-group list-group-flush" ng-repeat="a in filter.FilterItems|orderBy:'FilterItemTitle'">
+                                    <ul class="list-group list-group-flush" ng-repeat="a in filter.FilterItems">
                                         <li class="list-group-item" ng-if="a.FilterItemTitle!=null">
                                             <input type="checkbox" id="{{a.FilterItemTitle}}" ng-model="a.IsSelected"
                                                 autocomplete="off" class="text-left" ng-change='SearchJob(filter)' />
@@ -384,6 +416,11 @@
 
 <script>
 
-  
+    //$(document).ready(function () {
+
+    //    $('#btnSearch').click(function () {
+    //        alert();
+    //    })
+    //})
 
 </script>

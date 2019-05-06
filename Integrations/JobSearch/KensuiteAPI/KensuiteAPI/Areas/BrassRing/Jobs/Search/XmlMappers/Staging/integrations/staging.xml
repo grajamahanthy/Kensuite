@@ -45,7 +45,7 @@
                     <Value><![CDATA[TG_SEARCH_ALL]]></Value>
                   </Question>
                 </Questions>
-                <ReturnJobDetailQues>8543,111561,76301,37052,109336,117988</ReturnJobDetailQues>
+                <ReturnJobDetailQues>117990</ReturnJobDetailQues>
               </InputString>
             </Payload>
           </Packet>
@@ -75,18 +75,14 @@
             <Title>Keyword</Title>
             <Type>text</Type>
             <Watermark>Enter Job Title Or Keywords</Watermark>
+            <IsSearchAll>yes</IsSearchAll>
           </KeywordQuestion>
           <KeywordQuestion>
             <Id>109336</Id>
             <Title>State</Title>
             <Type>singleselect</Type>
             <Watermark>State</Watermark>
-          </KeywordQuestion>
-          <KeywordQuestion>
-            <Id>109336</Id>
-            <Title>City</Title>
-            <Type>singleselect</Type>
-            <Watermark>City</Watermark>
+            <IsSearchAll></IsSearchAll>
           </KeywordQuestion>
         </SearchKeyword>
         <SearchResult>

@@ -6,6 +6,7 @@ using System.Web;
 namespace KensuiteAPI.Areas.BrassRing.Jobs.Search.XmlMappers
 {
 
+
     /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -131,6 +132,8 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search.XmlMappers
 
         private string watermarkField;
 
+        private string isSearchAllField;
+
         /// <remarks/>
         public uint Id
         {
@@ -180,6 +183,19 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search.XmlMappers
             set
             {
                 this.watermarkField = value;
+            }
+        }
+
+        /// <remarks/>
+        public string IsSearchAll
+        {
+            get
+            {
+                return this.isSearchAllField;
+            }
+            set
+            {
+                this.isSearchAllField = value;
             }
         }
     }
