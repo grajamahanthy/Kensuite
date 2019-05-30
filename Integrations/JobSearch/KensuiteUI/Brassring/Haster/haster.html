@@ -1,0 +1,515 @@
+<html>
+
+
+
+<head>
+    <title>Home</title>
+    <!--meta-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--end of  meta-->
+
+    <!--link-->
+    <link rel="stylesheet" type="text/css"
+        href="https://katuritech.com/hy2/wp-content/themes/corporate/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://katuritech.com/hy2/wp-content/themes/corporate/css/slick.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://katuritech.com/hy2/wp-content/themes/corporate/css/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="https://katuritech.com/hy2/wp-content/themes/corporate/css/style.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://katuritech.com/hy2/wp-content/themes/corporate/css/responsive.css">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!--end of link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="styles/jquery-ui.theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="styles/pagestyle.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="Scripts/jquery-3.0.0.min.js"></script>
+    <script src="Scripts/jquery-ui.min.js"></script>
+
+    <script src="Scripts/angular.min.js"></script>
+
+    <script src="Scripts/angular-animation.js"></script>
+    <script src="Scripts/angular-sanitize.js"></script>
+    <script src="angular/angular_module.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <section class="topicon">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-6">
+                    <div class="tg-site-header-top">
+                        <p>NYSE: 12 65.38 +0.41</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-6">
+                    <div class="list">
+                        <ul>
+                            <li><a href="https://linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://fb.com"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com"> <i class="fa fa-twitter"></i> </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--header top-->
+    <section class="bgcolor">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-md navbar-dark paddnav">
+                        <!-- Brand -->
+                        <a class="navbar-brand" href="https://katuritech.com/hy2"><img
+                                src="https://katuritech.com/hy2/wp-content/uploads/2019/05/logo-hy-1-1.jpg"></a>
+
+                        <!-- Toggler/collapsibe Button -->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#collapsibleNavbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <!-- Navbar links -->
+                        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                            <ul id="menu-main-menu" class="navbar-nav navbarul ml-auto">
+                                <li id="menu-item-108"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-108 nav-item">
+                                    <a href="https://katuritech.com/hy2">HOME</a></li>
+                                <li id="menu-item-87"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-87 nav-item">
+                                    <a href="https://katuritech.com/hy2/about/">ABOUT OUR COMPANY</a></li>
+                                <li id="menu-item-88"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-88 nav-item">
+                                    <a href="https://katuritech.com/hy2/culture/">CULTURE</a></li>
+                                <li id="menu-item-104"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-91 current_page_item menu-item-104 nav-item">
+                                    <a href="https://katuritech.com/hy2/careers/" aria-current="page">CAREER</a></li>
+                                <li id="menu-item-9"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9 nav-item">
+                                    <a href="#">RECRUTING EVENTS</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--end of header top-->
+    <section class="bredcram-career"
+        style="background-image: url(https://katuritech.com/hy2/wp-content/uploads/2019/05/Desktop7-768x362.jpg)">
+        <div class="container text4" ng-app="myModule" ng-cloak ng-controller="myController">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bredcramtext11">
+                        <h3>Join us to make a difference</h3>
+                        <h4>Search our Jobs</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <form class="row">
+                    <div class="col-md-5" ng-repeat="q in ctrlSearchQuestions">
+                        <div class="what" ng-if="q.Type=='text'">
+                            <p>What</p>
+                            <input type="text" id="{{q.Id}}" name="Job title keywords" placeholder="{{q.Watermark}}"
+                                ng-model="q.SearchKey" autocomplete="off">
+                        </div>
+                        <div class="what" ng-if="q.Type=='singleselect'">
+                            <p>Where</p>
+                            <input type="text" id="{{q.Id}}" name="State ou Zip Code" placeholder="{{q.Watermark}}"
+                                ng-model="q.SearchKey" autocomplete="off"
+                                uib-typeahead="location.Description as location.Description for location in Locationdata | filter:{Description:$viewValue}"
+                                typeahead-popup-template-url="customPopupTemplate.html">
+
+                            <script type="text/ng-template" id="customPopupTemplate.html">
+                                <div class="custom-popup-wrapper form-group"
+                                   ng-style="{top: position().top+'px', left: position().left+'px'}"
+                                   style="display: block;position: absolute;z-index: 1;"
+                                   ng-show="isOpen() && !moveInProgress"
+                                   aria-hidden="{{!isOpen()}}">
+                              
+                                  <ul class="list-group" role="listbox">
+                                    <li class=" list-group-item list-group-item-action text-white" 
+                                    ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }"
+                                      ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}">
+                                      <div uib-typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>
+                                    </li>
+                                  </ul>
+                                </div>
+                        </script>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="check1">
+                            <a href="#" id="btnSearch" ng-click="SearchJob()">FIND JOB</a>
+                            <!-- <a type="submit" id="btnSearch" ng-click="SearchJob()">Search</a> -->
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <section>
+                <div class="row" ng-if="exists(Jobs) ">
+                    <div class="{{(Searchfilter.IsHotJob)?'col-md-12':'col-md-8'}}">
+                        <!-- <h2 class="my-4">Job search result</h2> -->
+                        <div class="row mb-2 ml-2">
+                            <div ng-repeat="f in Searchfilter.FilterCategories"
+                                ng-if="(f.FilterItems | filter : {IsSelected:true}).length > 0">
+                                <!--ng-if="f.filterCatSelected != undefined && f.filterCatSelected != null && f.filterCatSelected >= 0"-->
+                                <div class="clearfix">
+                                    {{f.Title}}:
+                                    <div class="btn btn-info px-1 mx-1 my-1"
+                                        ng-repeat="i in f.FilterItems | filter : {IsSelected:true}"
+                                        ng-init="f.filterCatSelected = $index">
+                                        {{i.FilterItemTitle}} <span ng-click="i.IsSelected = false;SearchJob();">
+                                            <i class="fa fa-close"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="exists(Jobs)">
+                            <div
+                                ng-repeat="job in Jobs.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))|filter:Searchfilter.IsHotJob?{questionField:{'idField':idField,'valueField':valuefield}}: ''">
+                                <div class=" card w-100 border-default mb-2 ">
+                                    <div class=" card-body">
+                                        <span class="card-text" ng-repeat="q in job.questionField">
+                                            <h3 class="card-title text-primary"
+                                                ng-if="getQuestionProp(q.idField)=='Job Title'">
+                                                <a href="{{job.jobDetailLinkField}}" target="#">
+                                                    {{q.valueField}}
+                                                </a>
+                                            </h3>
+
+                                            <span class="mr-3" ng-if="getQuestionProp(q.idField)=='Job Title'">
+                                                <strong>{{getQuestionProp(q.idField)}} : </strong>{{q.valueField}}
+                                            </span>
+                                            <span class="mr-3" ng-if="getQuestionProp(q.idField)=='Location'">
+                                                <strong>{{getQuestionProp(q.idField)}} : </strong>{{q.valueField}}
+                                            </span>
+                                        </span>
+                                        <div class="text-right">
+                                            <a href="{{job.jobDetailLinkField}}" target="#"
+                                                class="btn btn-primary">Apply
+                                                Job</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize"
+                                ng-change="pageChanged()" num-pages="numPages" items-per-page="itemsPerPage"></ul>
+
+
+                        </div>
+                        <div ng-if="!exists(Jobs)">
+                            Please add or change search criteria for Search result.
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4" ng-if="!Searchfilter.IsHotJob">
+
+                        <!-- Categories Widget -->
+                        <div id="container">
+                            <div id="accordion">
+                                <diV class="card my-2 text-center">
+                                    <div class="card-header" style="background-color:#0592ba;">
+                                        <span class="card-title text-light">
+                                            <h5> FILTER RESULTS</h5>
+                                        </span>
+                                    </div>
+                                </diV>
+                                <div class="card my-2"
+                                    ng-repeat="filter in ($scope.Searchfilter.IsHotJob?Searchfilter.FilterCategories:Searchfilter.FilterCategories)">
+
+
+                                    <div class="collapsed card-header" style="background-color:#0592ba;"
+                                        ng-click="collapseIt($index)" data-toggle="collapse"
+                                        href="#collapse{{filter.Title.replace(' ','')}}">
+                                        <a class="card-link ">
+                                            <span class="card-title text-light text-left">
+                                                <b>{{filter.Title}}</b>
+                                                <i ng-if="collapseId!=$index"
+                                                    class=" fa fa-plus pull-right text-light"></i>
+                                                <i ng-if="collapseId==$index"
+                                                    class=" fa fa-minus pull-right text-light"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div id="collapse{{filter.Title.replace(' ','')}}" ng-show="collapseId==$index"
+                                        class="" data-parent="#accordion">
+                                        <div class="card-body filterscroll" ng-if="filter.FilterItems != null">
+                                            <ul class="list-group list-group-flush"
+                                                ng-repeat="a in filter.FilterItems|orderBy:'FilterItemTitle'">
+                                                <li class="list-group-item" ng-if="a.FilterItemTitle!=null">
+                                                    <input type="checkbox" id="{{a.FilterItemTitle}}"
+                                                        ng-model="a.IsSelected" autocomplete="off" class="text-left"
+                                                        ng-change='SearchJob(filter)' />
+                                                    <label for="{{a.FilterItemTitle}}" class="text-right">
+                                                        {{a.FilterItemTitle}} ({{a.FilterItemResultCount}})
+                                                    </label>
+                                                    <!--<a href="#" ng-click="myFunc()">{{a.FilterItemTitle}} ({{a.FilterItemResultCount}})</a>-->
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <diV class="card my-2 text-center" ng-click="clearFilter()">
+                                    <button class=" btn btn-info">
+                                        <h5> Clear Filter</h5>
+                                    </button>
+                                </diV>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+    </section>
+
+
+    <section class="padd1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title1">
+                        <h4>LIFE AT OUR GROUP</h4>
+                        <h3>CULTURE OF INNOVATION</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mattop">
+                <div class="col-md-4">
+                    <div class="textimag31 coloryelow">
+                        <h3>Aftermarket</h3>
+                        <p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies
+                                mauris finibus aliquam eu et ante. Donec ut odio dignissim, fermentum augue nec, rutrum
+                                nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="textimag31 coloryelow">
+                        <h3>Big Trucks</h3>
+                        <p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies
+                                mauris finibus aliquam eu et ante. Donec ut odio dignissim, fermentum augue nec, rutrum
+                                nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="textimag31 coloryelow">
+                        <h3>Credit</h3>
+                        <p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies
+                                mauris finibus aliquam eu et ante. Donec ut odio dignissim, fermentum augue nec, rutrum
+                                nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="textimag31 coloryelow">
+                        <h3>Fleet</h3>
+                        <p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies
+                                mauris finibus aliquam eu et ante. Donec ut odio dignissim, fermentum augue nec, rutrum
+                                nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="textimag31 coloryelow">
+                        <h3>Human Resource</h3>
+                        <p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies
+                                mauris finibus aliquam eu et ante. Donec ut odio dignissim, fermentum augue nec, rutrum
+                                nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="textimag31 coloryelow">
+                        <h3>IT</h3>
+                        <p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies
+                                mauris finibus aliquam eu et ante. Donec ut odio dignissim, fermentum augue nec, rutrum
+                                nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="textgrey">
+                        <h4>Join Our Team</h4>
+                        <p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies
+                                mauris finibus aliquam eu et ante. Donec ut odio dignissim, fermentum augue nec, rutrum
+                                nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna
+                                ultricies mauris finibus aliquam eu et ante. Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Nullam mollis urna ultricies mauris finibus aliquam eu et ante. Donec
+                                ut odio dignissim, fermentum augue nec, rutrum nunc. Lorem ipsum dolor sit amet,
+                                consectetur adipiscing elit. Nullam mollis urna ultricies mauris finibus aliquam eu et
+                                ante.</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="bgimages3"
+        style="background-image: url(https://katuritech.com/hy2/wp-content/uploads/2019/05/banner2-1.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="textheader">
+                        <h3>Our Team</h3>
+                        <p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                                ullamcorper mattis, pulvinar dapibus leo.Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
+                                leo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                                ullamcorper mattis, pulvinar dapibus leo.Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
+                                leo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                                ullamcorper mattis, pulvinar dapibus leo.</p>
+                        </p>
+
+                        <!-- <a href="#" class="redcolro">Read more <i class="fa fa-angle-right"></i></a> -->
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+    </section>
+
+    <section class="bgimages4"
+        style="background-image: url(https://katuritech.com/hy2/wp-content/uploads/2019/05/banner3.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <div class="textheader">
+                        <h3>@Life Time</h3>
+                        <p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                                ullamcorper mattis, pulvinar dapibus leo.Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
+                                leo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                                ullamcorper mattis, pulvinar dapibus leo.Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
+                                leo.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                                ullamcorper mattis, pulvinar dapibus leo.</p>
+                        </p>
+
+                        <!-- <a href="#" class="redcolro">Read more <i class="fa fa-angle-right"></i></a> -->
+
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footercontents">
+                        <ul id="menu-footer-menu" class="listfooetr">
+                            <li id="menu-item-10"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
+                                    href="#">EOE/DISABILITY ASSISTANCE</a></li>
+                            <li id="menu-item-11"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11"><a
+                                    href="#">OUR-COMPANY.COM</a></li>
+                            <li id="menu-item-12"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12"><a
+                                    href="#">TALENT COMMUNITY</a></li>
+                        </ul>
+                    </div>
+                    <div class="ploce">
+                        <ul>
+                            <li><a href="#">Privacy</a></li>
+                            <li>&nbsp; |&nbsp; </li>
+                            <li><a href="#">Sitemap</a></li>
+                            <li>&nbsp; |&nbsp; </li>
+                            <li><a href="#">© 2019 OUR COMPANY, Inc.</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid padd">
+            <div class="row">
+                <div class="col-md-6 col-6">
+                    <div class="clip">
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-6">
+                    <div class="clip1">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--js-->
+    <script type="text/javascript"
+        src="https://katuritech.com/hy2/wp-content/themes/corporate/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript"
+        src="https://katuritech.com/hy2/wp-content/themes/corporate/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://katuritech.com/hy2/wp-content/themes/corporate/js/slick.js"></script>
+    <!--end of js-->
+
+    <script type="text/javascript">
+        $('.bannerslider').slick({
+            dots: true,
+            infinite: false,
+            speed: 1500,
+            autoplay: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+        });
+    </script>
+
+</body>
+
+
+
+</html>
