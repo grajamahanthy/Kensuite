@@ -256,19 +256,24 @@
                                     <div id="collapse{{filter.Title.replace(' ','')}}" ng-show="collapseId==$index"
                                         class="" data-parent="#accordion">
                                         <div class="card-body filterscroll" ng-if="filter.FilterItems != null">
-                                            <ul class="list-group list-group-flush"
-                                                ng-repeat="a in filter.FilterItems|orderBy:'FilterItemTitle'"
-                                                id="{{filter.Id}}">
-                                                <li class="list-group-item" ng-if="a.FilterItemTitle!=null">
-                                                    <input type="checkbox" id="{{filter.Id + '_' + $index}}"
-                                                        optText="{{a.FilterItemTitle}}" ng-model="a.IsSelected"
-                                                        autocomplete="off" class="text-left"
-                                                        ng-change='SearchJob(filter)' />
-                                                    <label for="{{a.FilterItemTitle}}" class="text-right">
-                                                        {{a.FilterItemTitle}} ({{a.FilterItemResultCount}})
-                                                    </label>
+                                            <ul class="list-group list-group-flush" id="{{filter.Id}}"></ul>
+                                            <li class="list-group-item"
+                                                ng-repeat="a in filter.FilterItems|orderBy:'FilterItemTitle'">
+                                                <div class="row" ng-if="a.FilterItemTitle!=null">
+                                                    <div class="col-md-1">
+                                                        <input type="checkbox" id="{{filter.Id + '_' + $index}}"
+                                                            optText="{{a.FilterItemTitle}}" ng-model="a.IsSelected"
+                                                            autocomplete="off" class="text-left"
+                                                            ng-change='SearchJob(filter)' />
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <label for="{{a.FilterItemTitle}}">
+                                                            {{a.FilterItemTitle}} ({{a.FilterItemResultCount}})
+                                                        </label>
+                                                    </div>
                                                     <!--<a href="#" ng-click="myFunc()">{{a.FilterItemTitle}} ({{a.FilterItemResultCount}})</a>-->
-                                                </li>
+                                                </div>
+                                            </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -313,7 +318,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="textimag31 coloryelow">
+                    <div class="textimag31 coloryelow" ng-click="getJobsByCategory('37135','Day Shift')">
                         <h3>Big Trucks</h3>
                         <p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies

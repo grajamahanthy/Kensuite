@@ -17,7 +17,7 @@ var app = angular
         $scope.isNotPerf = false;
         $scope.productionserver = false;
         $scope.apiBase = 'https://kensuitejobsearchapi.warmcall.com';
-        $scope.apiBase = 'http://localhost:54920';
+        // $scope.apiBase = 'http://localhost:54920';
 
 
 
