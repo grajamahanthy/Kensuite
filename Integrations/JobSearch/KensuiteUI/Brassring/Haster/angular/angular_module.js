@@ -17,7 +17,8 @@ var app = angular
         $scope.isNotPerf = false;
         $scope.productionserver = false;
         $scope.apiBase = 'https://kensuitejobsearchapi.warmcall.com';
-        // $scope.apiBase = 'http://localhost:54920';
+        //$scope.apiBase = 'http://localhost:54920';
+        $scope.showResults = true;
 
 
 
@@ -137,33 +138,6 @@ var app = angular
 
         /*Country ,state and city */
 
-
-
-
-        $scope.contryoption = "";
-        $scope.stateoption = "";
-        $scope.cityoption = "";
-
-        $scope.Countrys = [
-            { "name": "US" },
-            { "name": "UK" },
-            { "name": "India" },
-        ]
-
-        $scope.states = {
-            "US": [
-                { "name": "Colorado", "shortname": "CO" },
-                { "name": "Pennsylvania", "shortname": "PA" },
-                { "name": "South Dakota", "shortname": "SD" },
-                { "name": "Texas", "shortname": "TX" },
-            ]
-        }
-        $scope.Cities = {
-            "CO": [{ "name": "Denver" }],
-            "PA": [{ "name": "Philadelphia" }],
-            "SD": [{ "name": "Sioux Falls" }],
-            "TX": [{ "name": "Indianola" }],
-        }
 
         $scope.getSearchKeywords = function () {
             //Search Filter data
@@ -299,6 +273,33 @@ var app = angular
 
             }
 
+        }
+
+        $scope.getJobsByCategory = function (questionId, optionTxt) {
+            $scope.showResults = false;
+            $scope.SearchJob();
+            $scope.clearFilter();
+            var eleArr = null;
+            setTimeout(function () {
+                eleArr = getElementsByTagNameAndAttribute("input", questionId, "optText", optionTxt);
+                if (eleArr.length > 0) {
+                    if (!eleArr[0].checked) {
+                        eleArr[0].click();
+                    }
+                }
+                $scope.showResults = true;
+            }, 1);
+        }
+
+        getElementsByTagNameAndAttribute = function (tagName, tagId, attrName, attrValue) {
+            var parentEle = ((document.getElementById(tagId) == null || document.getElementById(tagId) == undefined) ? document : document.getElementById(tagId));
+            var elementsByTagName = parentEle.getElementsByTagName(tagName);
+            var retElements = [];
+            for (var i = 0; i < elementsByTagName.length; i++) {
+                if (elementsByTagName[i].getAttribute(attrName) == attrValue)
+                    retElements.push(elementsByTagName[i]);
+            }
+            return retElements;
         }
 
         /* Performance */

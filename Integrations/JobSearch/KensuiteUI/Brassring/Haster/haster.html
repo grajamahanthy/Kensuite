@@ -43,7 +43,7 @@
 
 </head>
 
-<body>
+<body ng-app="myModule" ng-cloak ng-controller="myController">
 
     <section class="topicon">
         <div class="container">
@@ -111,7 +111,7 @@
     <!--end of header top-->
     <section class="bredcram-career"
         style="background-image: url(https://katuritech.com/hy2/wp-content/uploads/2019/05/Desktop7-768x362.jpg)">
-        <div class="container text4" ng-app="myModule" ng-cloak ng-controller="myController">
+        <div class="container text4">
             <div class="row">
                 <div class="col-md-12">
                     <div class="bredcramtext11">
@@ -257,10 +257,12 @@
                                         class="" data-parent="#accordion">
                                         <div class="card-body filterscroll" ng-if="filter.FilterItems != null">
                                             <ul class="list-group list-group-flush"
-                                                ng-repeat="a in filter.FilterItems|orderBy:'FilterItemTitle'">
+                                                ng-repeat="a in filter.FilterItems|orderBy:'FilterItemTitle'"
+                                                id="{{filter.Id}}">
                                                 <li class="list-group-item" ng-if="a.FilterItemTitle!=null">
-                                                    <input type="checkbox" id="{{a.FilterItemTitle}}"
-                                                        ng-model="a.IsSelected" autocomplete="off" class="text-left"
+                                                    <input type="checkbox" id="{{filter.Id + '_' + $index}}"
+                                                        optText="{{a.FilterItemTitle}}" ng-model="a.IsSelected"
+                                                        autocomplete="off" class="text-left"
                                                         ng-change='SearchJob(filter)' />
                                                     <label for="{{a.FilterItemTitle}}" class="text-right">
                                                         {{a.FilterItemTitle}} ({{a.FilterItemResultCount}})
@@ -301,7 +303,7 @@
 
             <div class="row mattop">
                 <div class="col-md-4">
-                    <div class="textimag31 coloryelow">
+                    <div class="textimag31 coloryelow" ng-click="getJobsByCategory('37135','2nd Shift')">
                         <h3>Aftermarket</h3>
                         <p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies
