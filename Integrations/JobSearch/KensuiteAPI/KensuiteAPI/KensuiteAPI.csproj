@@ -219,9 +219,13 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\FieldMapper_staging.xml" />
-    <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\Production\integrations\production.xml" />
+    <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\Production\integrations\production.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\p_inputFeed.xml" />
-    <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\Staging\integrations\staging.xml" />
+    <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\Staging\integrations\staging.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\BrassRing\Jobs\Search\XmlMappers\s_inputFeed.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <None Include="Connected Services\BrassRingJobs\configuration91.svcinfo" />
@@ -275,6 +279,7 @@
     <None Include="Connected Services\BrassRingJobs\WebRouter.wsdl" />
     <None Include="Connected Services\Foundation\DispatchMessage.wsdl" />
     <None Include="Connected Services\StagingJobs\WebRouter.wsdl" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

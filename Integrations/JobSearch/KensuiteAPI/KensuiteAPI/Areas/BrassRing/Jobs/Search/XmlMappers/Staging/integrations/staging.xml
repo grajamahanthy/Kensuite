@@ -45,7 +45,7 @@
                     <Value><![CDATA[TG_SEARCH_ALL]]></Value>
                   </Question>
                 </Questions>
-                <ReturnJobDetailQues>117990</ReturnJobDetailQues>
+                <ReturnJobDetailQues>37052,37135</ReturnJobDetailQues>
               </InputString>
             </Payload>
           </Packet>
