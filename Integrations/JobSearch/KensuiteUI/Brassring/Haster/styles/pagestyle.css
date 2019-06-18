@@ -57,26 +57,26 @@ th {
 
 .pagination li {
     display: inline;
-    color: #0069D9;
+    color: #ECA900;
 }
 
 .pagination a {
     float: left;
     padding: 0 14px;
     line-height: 34px;
-    color: #0069D9;
+    color: #ECA900;
     text-decoration: none;
     border: 1px solid #ddd;
     border-left-width: 0;
 }
 
 .pagination a:hover, .pagination .active a {
-    background-color: #0069D9;
+    background-color: #ECA900;
     color: #ffffff;
 }
 
 .pagination a:focus {
-    background-color: #0069D9;
+    background-color: #ECA900;
     color: #ffffff;
 }
 
@@ -117,7 +117,7 @@ th {
     margin-bottom: 18px;
     list-style: none;
     text-align: center;
-    color: #0069D9;
+    color: #ECA900;
     *zoom: 1;
 }
 
@@ -132,13 +132,13 @@ th {
 
 .pager li {
     display: inline;
-    color: #0069D9;
+    color: #ECA900;
 }
 
 .pager a {
     display: inline-block;
     padding: 5px 14px;
-    color: #0069D9;
+    color: #ECA900;
     background-color: #fff;
     border: 1px solid #ddd;
     -webkit-border-radius: 15px;
@@ -177,7 +177,7 @@ input[type="checkbox"] {
 }
 
 .custom-popup-wrapper a {
-    color: #0069D9 !important;
+    color: #ECA900 !important;
     text-decoration: none;
     font-family: 'Open Sans', sans-serif;
 }
@@ -206,4 +206,16 @@ input[type="checkbox"] {
     border: none;
     border-radius: 0;
     box-shadow: none;
+}
+
+.clsyellow {
+    background-color: #ECA900;
+}
+
+.clsYellowtext a {
+    color: #ECA900;
+}
+
+.clsYellowtext a:hover {
+    color: #db9900;
 }

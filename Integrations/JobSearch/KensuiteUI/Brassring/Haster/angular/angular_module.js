@@ -17,9 +17,38 @@ var app = angular
         $scope.isNotPerf = false;
         $scope.productionserver = false;
         $scope.apiBase = 'https://kensuitejobsearchapi.warmcall.com';
-        //$scope.apiBase = 'http://localhost:54920';
+        // $scope.apiBase = 'http://localhost:54920';
         $scope.showResults = true;
-        var fieldMapperConfig = { "ClientId": "26018", "SearchFilter": [{ "Id": "51782", "Title": "JobTitle" }, { "Id": "37052", "Title": "Team" }, { "Id": "37135", "Title": "Work Hours" }, { "Id": "109336", "Title": "Location" }], "SearchKeyword": [{ "Id": "51782", "Title": "Keyword", "Type": "text", "Watermark": "Job Title Or Keywords", "IsSearchAll": "yes" }, { "Id": "109336", "Title": "State", "Type": "singleselect", "Watermark": "State or Zip Code", "IsSearchAll": "" }], "SearchResult": [{ "Id": "51782", "Title": "Job Title" }, { "Id": "109336", "Title": "Location" }, { "Id": "8544", "Title": "Job ID" }], "SearchLocation": [{ "Code": "Berea", "Description": "Berea, KY" }, { "Code": "Billerica", "Description": "Billerica, MA" }, { "Code": "Charlotte", "Description": "Charlotte, NC" }, { "Code": "Cleveland", "Description": "Cleveland, OH" }, { "Code": "Danville", "Description": "Danville, IL" }, { "Code": "AHQ", "Description": "Greenville, NC (Americas HQ)" }, { "Code": "GreenvillePlant", "Description": "Greenville, NC (Mfg & PDC)" }, { "Code": "Portland", "Description": "Portland, OR" }, { "Code": "SanDonato", "Description": "San Danato, Italy" }, { "Code": "Sulligent", "Description": "Sulligent, AL" }, { "Code": "Tyler", "Description": "Tyler, TX" }, { "Code": "Masate", "Description": "Masate, Italy" }, { "Code": "Homewood", "Description": "Homewood, IL" }] };
+        var fieldMapperConfig = {
+            "ClientId": "26018", "SearchFilter": [
+                { "Id": "51782", "Title": "JobTitle" },
+                { "Id": "117990", "Title": "Team" },
+                { "Id": "37135", "Title": "Work Hours" },
+                { "Id": "109336", "Title": "Location" }
+            ],
+            "SearchKeyword": [
+                { "Id": "51782", "Title": "Keyword", "Type": "text", "Watermark": "Job Title Or Keywords", "IsSearchAll": "yes" },
+                { "Id": "109336", "Title": "State", "Type": "singleselect", "Watermark": "State or Zip Code", "IsSearchAll": "" }
+            ],
+            "SearchResult": [
+                { "Id": "51782", "Title": "Job Title" },
+                { "Id": "109336", "Title": "Location" },
+                { "Id": "8544", "Title": "Job ID" }
+            ], "SearchLocation": [
+                { "Code": "Berea", "Description": "Berea, KY" },
+                { "Code": "Billerica", "Description": "Billerica, MA" },
+                { "Code": "Charlotte", "Description": "Charlotte, NC" },
+                { "Code": "Cleveland", "Description": "Cleveland, OH" },
+                { "Code": "Danville", "Description": "Danville, IL" },
+                { "Code": "AHQ", "Description": "Greenville, NC (Americas HQ)" },
+                { "Code": "GreenvillePlant", "Description": "Greenville, NC (Mfg & PDC)" },
+                { "Code": "Portland", "Description": "Portland, OR" },
+                { "Code": "SanDonato", "Description": "San Danato, Italy" },
+                { "Code": "Sulligent", "Description": "Sulligent, AL" },
+                { "Code": "Tyler", "Description": "Tyler, TX" },
+                { "Code": "Masate", "Description": "Masate, Italy" },
+                { "Code": "Homewood", "Description": "Homewood, IL" }]
+        };
 
 
 
@@ -246,6 +275,7 @@ var app = angular
         $scope.getallJobs = function () {
             $http.get($scope.apiBase + '/api/jobs/GetAllResult').then(function (response) {
                 $scope.alldata = response.data;
+                // console.log($scope.alldata);
             });
         }
 
@@ -268,6 +298,7 @@ var app = angular
         }
 
         $scope.getJobsByCategory = function (questionId, optionTxt) {
+            // console.log(questionId + ' ' + optionTxt);
             $scope.showResults = false;
             $scope.SearchJob();
             $scope.clearFilter();
@@ -473,7 +504,6 @@ GetLeftFilter = function (fieldMapper, jobs, isHotJob, searchUi) {
 
         // console.log(fieldMapper.SearchFilter[i]);
         jobs.filter(function (r) {
-
             for (j = 0; j < r.questionField.length; j++) {
 
                 if (r.questionField[j].idField == fieldMapper.SearchFilter[i].Id) {
@@ -504,6 +534,7 @@ GetLeftFilter = function (fieldMapper, jobs, isHotJob, searchUi) {
                 cnt++;
             }
         }
+        console.log()
         Filter_data.push({
             "Title": fieldMapper.SearchFilter[i].Title,
             "FilterItems": filteritemsarray,

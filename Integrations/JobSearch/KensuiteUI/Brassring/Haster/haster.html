@@ -204,9 +204,9 @@
                                 <div class=" card w-100 border-default mb-2 ">
                                     <div class=" card-body">
                                         <span class="card-text" ng-repeat="q in job.questionField">
-                                            <h3 class="card-title text-primary"
+                                            <h3 class="card-title clsYellowtext"
                                                 ng-if="getQuestionProp(q.idField)=='Job Title'">
-                                                <a href="{{job.jobDetailLinkField}}" target="#">
+                                                <a class="" href="{{job.jobDetailLinkField}}" target="#">
                                                     {{q.valueField}}
                                                 </a>
                                             </h3>
@@ -220,7 +220,7 @@
                                         </span>
                                         <div class="text-right">
                                             <a href="{{job.jobDetailLinkField}}" target="#"
-                                                class="btn btn-primary">Apply
+                                                class="btn btn-warning">Apply
                                                 Job</a>
                                         </div>
                                     </div>
@@ -243,8 +243,8 @@
                         <div id="container">
                             <div id="accordion">
                                 <diV class="card my-2 text-center">
-                                    <div class="card-header" style="background-color:#0592ba;">
-                                        <span class="card-title text-light">
+                                    <div class="card-header clsyellow">
+                                        <span class="card-title text-dark">
                                             <h5> FILTER RESULTS</h5>
                                         </span>
                                     </div>
@@ -253,11 +253,10 @@
                                     ng-repeat="filter in ($scope.Searchfilter.IsHotJob?Searchfilter.FilterCategories:Searchfilter.FilterCategories)">
 
 
-                                    <div class="collapsed card-header" style="background-color:#0592ba;"
-                                        ng-click="collapseIt($index)" data-toggle="collapse"
-                                        href="#collapse{{filter.Title.replace(' ','')}}">
+                                    <div class="collapsed card-header clsyellow" ng-click="collapseIt($index)"
+                                        data-toggle="collapse" href="#collapse{{filter.Title.replace(' ','')}}">
                                         <a class="card-link ">
-                                            <span class="card-title text-light text-left">
+                                            <span class="card-title text-dark text-left">
                                                 <b>{{filter.Title}}</b>
                                                 <i ng-if="collapseId!=$index"
                                                     class=" fa fa-plus pull-right text-light"></i>
@@ -268,7 +267,8 @@
                                     </div>
                                     <div id="collapse{{filter.Title.replace(' ','')}}" ng-show="collapseId==$index"
                                         class="" data-parent="#accordion">
-                                        <div class="card-body filterscroll" ng-if="filter.FilterItems != null">
+                                        <div class="card-body filterscroll bg-warning"
+                                            ng-if="filter.FilterItems != null">
                                             <ul class="list-group list-group-flush" id="{{filter.Id}}"></ul>
                                             <li class="list-group-item"
                                                 ng-repeat="a in filter.FilterItems|orderBy:'FilterItemTitle'">
@@ -292,7 +292,7 @@
                                     </div>
                                 </div>
                                 <diV class="card my-2 text-center" ng-click="clearFilter()">
-                                    <button class=" btn btn-info">
+                                    <button class=" btn clsyellow ">
                                         <h5> Clear Filter</h5>
                                     </button>
                                 </diV>
@@ -321,7 +321,7 @@
 
             <div class="row mattop">
                 <div class="col-md-4">
-                    <div class="textimag31 coloryelow" ng-click="getJobsByCategory('37135','2nd Shift')">
+                    <div class="textimag31 coloryelow" ng-click="getJobsByCategory('117990','AfterMarket')">
                         <h3>Aftermarket</h3>
                         <p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies
@@ -331,7 +331,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="textimag31 coloryelow" ng-click="getJobsByCategory('37135','Day Shift')">
+                    <div class="textimag31 coloryelow" ng-click="getJobsByCategory('117990','Big Trucks')">
                         <h3>Big Trucks</h3>
                         <p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis urna ultricies
