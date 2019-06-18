@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Config>
+  <Config>
   <Foundation>
-    <Url></Url>
-    <InputFeed></InputFeed>
+    <Url/>
+    <InputFeed/>
   </Foundation>
   <Jobs>
-    <Url>http://stagingimport.brassring.com/WebRouter/WebRouter.asmx/route</Url>
+    <Url>
+      http://stagingimport.brassring.com/WebRouter/WebRouter.asmx/route
+    </Url>
     <InputFeed>
       <Envelope version="01.00">
         <Sender>
@@ -42,10 +44,12 @@
                 <Questions>
                   <Question Sortorder="ASC" Sort="No">
                     <Id>8543</Id>
-                    <Value><![CDATA[TG_SEARCH_ALL]]></Value>
+                    <Value>
+                      <![CDATA[ TG_SEARCH_ALL ]]>
+                    </Value>
                   </Question>
                 </Questions>
-                <ReturnJobDetailQues>37052,37135</ReturnJobDetailQues>
+                <ReturnJobDetailQues>37135,117998</ReturnJobDetailQues>
               </InputString>
             </Payload>
           </Packet>
@@ -61,7 +65,7 @@
             <Title>JobTitle</Title>
           </FilterQuestion>
           <FilterQuestion>
-            <Id>37130</Id>
+            <Id>37135</Id>
             <Title>Job Role</Title>
           </FilterQuestion>
           <FilterQuestion>
@@ -82,7 +86,7 @@
             <Title>State</Title>
             <Type>singleselect</Type>
             <Watermark>State</Watermark>
-            <IsSearchAll></IsSearchAll>
+            <IsSearchAll/>
           </KeywordQuestion>
         </SearchKeyword>
         <SearchResult>
