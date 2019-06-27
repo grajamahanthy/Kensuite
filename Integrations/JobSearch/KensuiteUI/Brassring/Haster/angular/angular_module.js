@@ -16,8 +16,8 @@ var app = angular
         //true for server, false for local 
         $scope.isNotPerf = false;
         $scope.productionserver = false;
-        $scope.apiBase = 'https://kensuitejobsearchapi.warmcall.com';
-        // $scope.apiBase = 'http://localhost:54920';
+        $scope.apiBase = 'http://cpapi.kenjobs.com';
+        //$scope.apiBase = 'http://localhost:54920';
         $scope.showResults = true;
         var fieldMapperConfig = {
             "ClientId": "26018", "SearchFilter": [
