@@ -171,7 +171,6 @@ var app = angular
 
         $scope.getSearchKeywords = function () {
             //Search Filter data
-            //https://kensuitejobsearchapi.warmcall.com/api/default/
             $http.get($scope.apiBase + '/api/jobs/GetSearchKeyword')
                 .then(function (response) {
                     var data = response.data;
