@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FieldMap>
+  <ClientId>26018</ClientId>
+  <SearchFilter>
+    <FilterQuestion>
+      <Id>51782</Id>
+      <Title>JobTitle</Title>
+    </FilterQuestion>
+    <FilterQuestion>
+      <Id>37130</Id>
+      <Title>Job Role</Title>
+    </FilterQuestion>
+    <FilterQuestion>
+      <Id>109336</Id>
+      <Title>Location</Title>
+    </FilterQuestion>
+  </SearchFilter>
+  <SearchKeyword>
+    <KeywordQuestion>
+      <Id>51782</Id>
+      <Title>Keyword</Title>
+      <Type>text</Type>
+      <Watermark>Enter Job Title Or Keywords</Watermark>
+    </KeywordQuestion>
+    <KeywordQuestion>
+      <Id>53210</Id>
+      <Title>State</Title>
+      <Type>singleselect</Type>
+      <Watermark>State</Watermark>
+    </KeywordQuestion>
+    <KeywordQuestion>
+      <Id>53209</Id>
+      <Title>City</Title>
+      <Type>singleselect</Type>
+      <Watermark>City</Watermark>
+    </KeywordQuestion>
+  </SearchKeyword>
+  <SearchResult>
+    <ResultQuestion>
+      <Id>51782</Id>
+      <Title>Job Title</Title>
+    </ResultQuestion>
+    <ResultQuestion>
+      <Id>109336</Id>
+      <Title>Location</Title>
+    </ResultQuestion>
+    <ResultQuestion>
+      <Id>8544</Id>
+      <Title>Job ID</Title>
+    </ResultQuestion>
+  </SearchResult>
+</FieldMap>

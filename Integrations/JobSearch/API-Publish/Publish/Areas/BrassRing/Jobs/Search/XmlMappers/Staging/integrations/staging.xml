@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+  <Config>
+  <Foundation>
+    <Url/>
+    <InputFeed/>
+  </Foundation>
+  <Jobs>
+    <Url>
+      http://stagingimport.brassring.com/WebRouter/WebRouter.asmx/route
+    </Url>
+    <InputFeed>
+      <Envelope version="01.00">
+        <Sender>
+          <Id>8257</Id>
+          <Credential>26018</Credential>
+        </Sender>
+        <TransactInfo transactId="1" transactType="data">
+          <TransactId>01/27/2010</TransactId>
+          <TimeStamp>12:00:00 AM</TimeStamp>
+        </TransactInfo>
+        <Unit UnitProcessor="SearchAPI">
+          <Packet>
+            <PacketInfo packetType="data">
+              <packetId>1</packetId>
+            </PacketInfo>
+            <Payload>
+              <InputString>
+                <ClientId>26018</ClientId>
+                <SiteId>5911</SiteId>
+                <PageNumber>1</PageNumber>
+                <OutputXMLFormat>0</OutputXMLFormat>
+                <AuthenticationToken/>
+                <HotJobs/>
+                <ProximitySearch>
+                  <Distance/>
+                  <Measurement/>
+                  <Country/>
+                  <State/>
+                  <City/>
+                  <zipCode/>
+                </ProximitySearch>
+                <JobMatchCriteriaText/>
+                <SelectedSearchLocaleId/>
+                <Questions>
+                  <Question Sortorder="ASC" Sort="No">
+                    <Id>8543</Id>
+                    <Value>
+                      <![CDATA[ TG_SEARCH_ALL ]]>
+                    </Value>
+                  </Question>
+                </Questions>
+                <ReturnJobDetailQues>37135,117998</ReturnJobDetailQues>
+              </InputString>
+            </Payload>
+          </Packet>
+        </Unit>
+      </Envelope>
+    </InputFeed>
+    <FieldMapper>
+      <FieldMap>
+        <ClientId>26018</ClientId>
+        <SearchFilter>
+          <FilterQuestion>
+            <Id>51782</Id>
+            <Title>JobTitle</Title>
+          </FilterQuestion>
+          <FilterQuestion>
+            <Id>37135</Id>
+            <Title>Job Role</Title>
+          </FilterQuestion>
+          <FilterQuestion>
+            <Id>109336</Id>
+            <Title>Location</Title>
+          </FilterQuestion>
+        </SearchFilter>
+        <SearchKeyword>
+          <KeywordQuestion>
+            <Id>51782</Id>
+            <Title>Keyword</Title>
+            <Type>text</Type>
+            <Watermark>Enter Job Title Or Keywords</Watermark>
+            <IsSearchAll>yes</IsSearchAll>
+          </KeywordQuestion>
+          <KeywordQuestion>
+            <Id>109336</Id>
+            <Title>State</Title>
+            <Type>singleselect</Type>
+            <Watermark>State</Watermark>
+            <IsSearchAll/>
+          </KeywordQuestion>
+        </SearchKeyword>
+        <SearchResult>
+          <ResultQuestion>
+            <Id>51782</Id>
+            <Title>Job Title</Title>
+          </ResultQuestion>
+          <ResultQuestion>
+            <Id>109336</Id>
+            <Title>Location</Title>
+          </ResultQuestion>
+          <ResultQuestion>
+            <Id>8544</Id>
+            <Title>Job ID</Title>
+          </ResultQuestion>
+        </SearchResult>
+      </FieldMap>
+    </FieldMapper>
+  </Jobs>
+</Config>
