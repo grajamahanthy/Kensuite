@@ -14,41 +14,41 @@ namespace KensuiteAPI.Controllers
         
         // GET: api/Jobs
         [HttpPost]
-        public KensuiteAPI.Areas.BrassRing.Jobs.Search.Search GetAllResult([FromBody]SearchUi searchUi)
+        public KensuiteAPI.Areas.BrassRing.Jobs.Search.Search GetAllResult([FromBody]SearchUi searchUi, String cId)
         {
             KensuiteAPI.Areas.BrassRing.Jobs.Search.SearchData sobj = new KensuiteAPI.Areas.BrassRing.Jobs.Search.SearchData();
 
             //return sobj.getJobsByLocation();
             //string yourJson = Newtonsoft.Json.JsonConvert.SerializeObject(p);
-            KensuiteAPI.Areas.BrassRing.Jobs.Search.Search alldata= sobj.getJobsBySearch(searchUi);
+            KensuiteAPI.Areas.BrassRing.Jobs.Search.Search alldata= sobj.getJobsBySearch(searchUi, cId);
           //  return Newtonsoft.Json.JsonConvert.SerializeObject(alldata);
-            return sobj.getJobsBySearch(searchUi);
+            return sobj.getJobsBySearch(searchUi, cId);
         }
         // GET: api/Jobs
         [HttpGet]
-        public List<EnvelopeUnitPacketPayloadResultSetJob> GetAllResult()
+        public List<EnvelopeUnitPacketPayloadResultSetJob> GetAllResult(string cId)
         {
             SearchData searchData  = new SearchData();
-            List<EnvelopeUnitPacketPayloadResultSetJob> list= searchData.GetAllData();
+            List<EnvelopeUnitPacketPayloadResultSetJob> list= searchData.GetAllData(cId);
             return list;
         }
 
         [HttpGet]
-        public KensuiteAPI.Areas.BrassRing.Jobs.Search.Search GetSearchKeyword()
+        public KensuiteAPI.Areas.BrassRing.Jobs.Search.Search GetSearchKeyword(string cId)
         {
             KensuiteAPI.Areas.BrassRing.Jobs.Search.SearchData sobj = new KensuiteAPI.Areas.BrassRing.Jobs.Search.SearchData();
 
             //return sobj.getJobsByLocation();
-            return sobj.GetSearchkeyword();
+            return sobj.GetSearchkeyword(cId);
         }
 
         [HttpGet]
-        public SearchUi GetFeturedJobs()
+        public SearchUi GetFeturedJobs(string cId)
         {
             KensuiteAPI.Areas.BrassRing.Jobs.Search.SearchData sobj = new KensuiteAPI.Areas.BrassRing.Jobs.Search.SearchData();
 
             //return sobj.getJobsByLocation();
-            return sobj.GetHotJobs();
+            return sobj.GetHotJobs(cId);
         }
 
 

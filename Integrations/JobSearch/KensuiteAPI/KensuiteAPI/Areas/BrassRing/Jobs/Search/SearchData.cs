@@ -43,49 +43,51 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
         }
 
         //Search All Result
-        public List<EnvelopeUnitPacketPayloadResultSetJob> GetAllData()
+        public List<EnvelopeUnitPacketPayloadResultSetJob> GetAllData(string cId)
         {
-            bool server = Boolean.Parse(ConfigurationManager.AppSettings.Get("ServerSource"));
-            string data = null;
-            bool IsProduction = Boolean.Parse(ConfigurationManager.AppSettings.Get("ServerSource"));
-            string Fieldmapper = IsProduction ? "FieldMapper" : "FieldMapper_staging";
-            XmlDocument doc = new XmlDocument();
-            string fmPath = ConfigurationManager.AppSettings.Get(Fieldmapper);
-            doc.Load(fmPath);
-            XmlNodeList xmlNodeList = doc.SelectNodes("Config/Jobs/InputFeed");
-            string FieldMapData = xmlNodeList[0].InnerXml;
+            try { 
+                bool server = Boolean.Parse(ConfigurationManager.AppSettings.Get("ServerSource"));
+                string data = null;
+                bool IsProduction = Boolean.Parse(ConfigurationManager.AppSettings.Get("ServerSource"));
+                string Fieldmapper = IsProduction ? "FieldMapper" : "FieldMapper_staging";
 
-            XmlNodeList xmlNodeurl = doc.SelectNodes("Config/Jobs/Url");
-            string Url = xmlNodeurl[0].InnerText;
+                //**********************GET SERVICE PARAMS*******************//
+                string fmPath = ConfigurationManager.AppSettings.Get(Fieldmapper);
+                XmlDocument doc = new XmlDocument();
+                doc.Load(fmPath);
+                //Get Client node
+                XmlNodeList xmlNodeList = doc.SelectNodes("Config/Client[@id='" + cId +"']");
+                //Get Service Input envelope
+                string inputEnvelopeXml = xmlNodeList[0].SelectNodes("Jobs/InputFeed")[0].InnerXml;
+                //Get Service Url
+                string serviceUrl = xmlNodeList[0].SelectNodes("Jobs/Url")[0].InnerText;
 
-            data = CallWebService(Url, "POST", "inputXml=" + FieldMapData);
-            //if (server)
-            //{
-            //BrassRingJobs.WebRouterSoapClient obj = new BrassRingJobs.WebRouterSoapClient("WebRouterSoap");
-            // string data = obj.route("<Envelope version=\"01.00\"> <Sender><Id>12345</Id><Credential>25253</Credential></Sender> <TransactInfo transactId=\"1\" transactType=\"data\"><TransactId>01/27/2010</TransactId> <TimeStamp>12:00:00 AM</TimeStamp></TransactInfo> <Unit UnitProcessor=\"SearchAPI\"> <Packet> <PacketInfo packetType=\"data\"> <packetId>1</packetId></PacketInfo><Payload><InputString> <ClientId>25253</ClientId><SiteId>5700</SiteId> <PageNumber>1</PageNumber><OutputXMLFormat>0</OutputXMLFormat> <AuthenticationToken/><HotJobs/> <ProximitySearch><Distance/> <Measurement/> <Country/><State/> <City/><zipCode/> </ProximitySearch><JobMatchCriteriaText/> <SelectedSearchLocaleId/> <Questions> <Question Sortorder=\"ASC\" Sort=\"No\"> <Id>35992</Id> <Value> <![CDATA[TG_SEARCH_ALL]]></Value></Question></Questions></InputString> </Payload> </Packet> </Unit></Envelope>");
-            //data = obj.route(FieldMapData);
-            data = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>" + data;
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        StagingJobs.WebRouterSoapClient obj = new StagingJobs.WebRouterSoapClient("WebRouterSoap");
-            //        data = obj.route(FieldMapData);
-            //        data = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>" + data;
-            //    }
-            //    catch (Exception ex)
-            //    {
+                //**********************MAKE SERVICE CALL*******************//
+                data = CallWebService(serviceUrl, "POST", "inputXml=" + inputEnvelopeXml);
+                //if (server)
+                //{
+                //BrassRingJobs.WebRouterSoapClient obj = new BrassRingJobs.WebRouterSoapClient("WebRouterSoap");
+                // string data = obj.route("<Envelope version=\"01.00\"> <Sender><Id>12345</Id><Credential>25253</Credential></Sender> <TransactInfo transactId=\"1\" transactType=\"data\"><TransactId>01/27/2010</TransactId> <TimeStamp>12:00:00 AM</TimeStamp></TransactInfo> <Unit UnitProcessor=\"SearchAPI\"> <Packet> <PacketInfo packetType=\"data\"> <packetId>1</packetId></PacketInfo><Payload><InputString> <ClientId>25253</ClientId><SiteId>5700</SiteId> <PageNumber>1</PageNumber><OutputXMLFormat>0</OutputXMLFormat> <AuthenticationToken/><HotJobs/> <ProximitySearch><Distance/> <Measurement/> <Country/><State/> <City/><zipCode/> </ProximitySearch><JobMatchCriteriaText/> <SelectedSearchLocaleId/> <Questions> <Question Sortorder=\"ASC\" Sort=\"No\"> <Id>35992</Id> <Value> <![CDATA[TG_SEARCH_ALL]]></Value></Question></Questions></InputString> </Payload> </Packet> </Unit></Envelope>");
+                //data = obj.route(FieldMapData);
+                data = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>" + data;
+                //}
+                //else
+                //{
+                //    try
+                //    {
+                //        StagingJobs.WebRouterSoapClient obj = new StagingJobs.WebRouterSoapClient("WebRouterSoap");
+                //        data = obj.route(FieldMapData);
+                //        data = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>" + data;
+                //    }
+                //    catch (Exception ex)
+                //    {
 
-            //    }
+                //    }
 
-            //}
+                //}
 
-            ////////////////////////////////////////////////////////Get Search Result 
-            //Loading Result XML
-
-            try
-            {
+                ////////////////////////////////////////////////////////Get Search Result 
+                //Loading Result XML
                 XmlDocument searchResultXml = new XmlDocument();
                 searchResultXml.LoadXml(data);
                 XmlNodeList resultDoc = searchResultXml.GetElementsByTagName("Jobs")[0].ChildNodes;
@@ -97,165 +99,186 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
             }
             catch (Exception ex)
             {
-                return null;
+                return new List<EnvelopeUnitPacketPayloadResultSetJob>();
             }
 
         }
 
         //Field Mapper
-        public FieldMap GetFieldMapper()
+        public FieldMap GetFieldMapper(string cId)
         {
-            ////////////////////////////////////////////////////////Get Field Mapper 
-            //Loading Field Mapper XML
-            bool IsProduction = Boolean.Parse(ConfigurationManager.AppSettings.Get("ServerSource"));
-            string Fieldmapper = IsProduction ? "FieldMapper" : "FieldMapper_staging";
-            XmlDocument doc = new XmlDocument();
-            string fmPath = ConfigurationManager.AppSettings.Get(Fieldmapper);
-            doc.Load(fmPath);
-            XmlNodeList xmlNodeList = doc.SelectNodes("Config/Jobs/FieldMapper");
-            string FieldMapData = xmlNodeList[0].InnerXml;
-            //Converting Field Mapper XML to C# Object
-            //  string FieldMapData = doc.InnerXml;
-            SerializeDeserialize<FieldMap> FieldMapSerializer = new SerializeDeserialize<FieldMap>();
-            FieldMap FieldMapResults = FieldMapSerializer.DeserializeData(FieldMapData);
+            try
+            {
+                ////////////////////////////////////////////////////////Get Field Mapper 
+                //Loading Field Mapper XML
+                bool IsProduction = Boolean.Parse(ConfigurationManager.AppSettings.Get("ServerSource"));
+                string Fieldmapper = IsProduction ? "FieldMapper" : "FieldMapper_staging";
+                XmlDocument doc = new XmlDocument();
+                string fmPath = ConfigurationManager.AppSettings.Get(Fieldmapper);
+                doc.Load(fmPath);
+                XmlNodeList xmlNodeList = doc.SelectNodes("Config/Client[@id='" + cId + "']/Jobs/FieldMapper");
+                string FieldMapData = xmlNodeList[0].InnerXml;
+                //Converting Field Mapper XML to C# Object
+                //  string FieldMapData = doc.InnerXml;
+                SerializeDeserialize<FieldMap> FieldMapSerializer = new SerializeDeserialize<FieldMap>();
+                FieldMap FieldMapResults = FieldMapSerializer.DeserializeData(FieldMapData);
 
-            return FieldMapResults;
+                return FieldMapResults;
+            }
+            catch(Exception ex)
+            {
+                return new FieldMap();
+            }
         }
 
         //Search By Filter
-        public Search getJobsBySearch(SearchUi searchui)
+        public Search getJobsBySearch(SearchUi searchui, String cId)
         {
-            // GetHotJobs();
-            List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData();
-            FieldMap fieldMapper = GetFieldMapper();
-            Search srch = new Search();
-            IEnumerable<EnvelopeUnitPacketPayloadResultSetJob> res = searchDataSource;
-            bool searchKeysExist = false;
-
-            ////Get Search Results By Question Keywords
-            searchKeysExist = searchui != null && searchui.SearchQuestions != null && searchui.SearchQuestions.Count() > 0
-                                   && searchui.SearchQuestions.Where(x => !string.IsNullOrEmpty(x.SearchKey)).Count() > 0;
-            if (searchKeysExist)
+            try
             {
-                foreach (var q in searchui.SearchQuestions)
+                // GetHotJobs();
+                List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData(cId);
+                FieldMap fieldMapper = GetFieldMapper(cId);
+                Search srch = new Search();
+                IEnumerable<EnvelopeUnitPacketPayloadResultSetJob> res = searchDataSource;
+                bool searchKeysExist = false;
+
+                ////Get Search Results By Question Keywords
+                searchKeysExist = searchui != null && searchui.SearchQuestions != null && searchui.SearchQuestions.Count() > 0
+                                       && searchui.SearchQuestions.Where(x => !string.IsNullOrEmpty(x.SearchKey)).Count() > 0;
+                if (searchKeysExist)
                 {
-                    if (!string.IsNullOrEmpty(q.SearchKey))
+                    foreach (var q in searchui.SearchQuestions)
                     {
-                        if (q.IsSearchAll == "yes")
+                        if (!string.IsNullOrEmpty(q.SearchKey))
                         {
-                            res = (res.Where(x =>
-                                              (x.Question.Where(r =>
-                                              //r.Id == q.Id &&
-                                              (Convert.ToString(r.Value == null ? "" : r.Value).ToLower()).Contains(Convert.ToString(q.SearchKey).Trim().ToLower())).Count() > 0)));
+                            if (q.IsSearchAll == "yes")
+                            {
+                                res = (res.Where(x =>
+                                                  (x.Question.Where(r =>
+                                                  //r.Id == q.Id &&
+                                                  (Convert.ToString(r.Value == null ? "" : r.Value).ToLower()).Contains(Convert.ToString(q.SearchKey).Trim().ToLower())).Count() > 0)));
 
-                        }
-                        else
-                        {
-                            res = (res.Where(x =>
-                                              (x.Question.Where(r =>
-                                              r.Id == q.Id &&
-                                              (Convert.ToString(r.Value == null ? "" : r.Value).ToLower()).Contains(Convert.ToString(q.SearchKey).Trim().ToLower())).Count() > 0)));
+                            }
+                            else
+                            {
+                                res = (res.Where(x =>
+                                                  (x.Question.Where(r =>
+                                                  r.Id == q.Id &&
+                                                  (Convert.ToString(r.Value == null ? "" : r.Value).ToLower()).Contains(Convert.ToString(q.SearchKey).Trim().ToLower())).Count() > 0)));
 
+                            }
                         }
                     }
                 }
-            }
-            List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults = (searchui.IsHotJob ? (res.Where(y => y.HotJob.ToLower() == "yes").ToList()) : res.ToList());
+                List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults = (searchui.IsHotJob ? (res.Where(y => y.HotJob.ToLower() == "yes").ToList()) : res.ToList());
 
-            ////Get Search Results By Filter
-            bool IsFilterCatExist = false;
-            if (searchui.FilterCategories != null)
-                IsFilterCatExist = searchui.FilterCategories.Where(x => (x.FilterItems.Where(y => y.IsSelected == true)).Count() > 0).Count() > 0;
+                ////Get Search Results By Filter
+                bool IsFilterCatExist = false;
+                if (searchui.FilterCategories != null)
+                    IsFilterCatExist = searchui.FilterCategories.Where(x => (x.FilterItems.Where(y => y.IsSelected == true)).Count() > 0).Count() > 0;
 
-            if (IsFilterCatExist)
-            {
-                List<EnvelopeUnitPacketPayloadResultSetJob> catResults = filterItemResults;
-                foreach (var f in searchui.FilterCategories)
+                if (IsFilterCatExist)
                 {
-                    List<EnvelopeUnitPacketPayloadResultSetJob> itemResults = new List<EnvelopeUnitPacketPayloadResultSetJob>();
-                    foreach (var fitem in f.FilterItems)
+                    List<EnvelopeUnitPacketPayloadResultSetJob> catResults = filterItemResults;
+                    foreach (var f in searchui.FilterCategories)
                     {
-                        if (fitem.IsSelected)
+                        List<EnvelopeUnitPacketPayloadResultSetJob> itemResults = new List<EnvelopeUnitPacketPayloadResultSetJob>();
+                        foreach (var fitem in f.FilterItems)
                         {
-                            var itemRes = (catResults.Where(x =>
-                                                (x.Question.Where(r => r.Id == f.Id &&
-                                                (Convert.ToString(r.Value == null ? "" : r.Value).ToLower()).Contains(Convert.ToString(fitem.FilterItemTitle).Trim().ToLower())).Count() > 0)));
+                            if (fitem.IsSelected)
+                            {
+                                var itemRes = (catResults.Where(x =>
+                                                    (x.Question.Where(r => r.Id == f.Id &&
+                                                    (Convert.ToString(r.Value == null ? "" : r.Value).ToLower()).Contains(Convert.ToString(fitem.FilterItemTitle).Trim().ToLower())).Count() > 0)));
 
-                            itemResults.AddRange(itemRes.ToList());
+                                itemResults.AddRange(itemRes.ToList());
+                            }
                         }
+                        if (itemResults.Count() > 0)
+                            catResults = itemResults;
                     }
-                    if (itemResults.Count() > 0)
-                        catResults = itemResults;
+                    filterItemResults = catResults;
                 }
-                filterItemResults = catResults;
+                srch.SearchResult = filterItemResults;
+
+                //Get Field Mapper
+                srch.FieldMaper = fieldMapper;
+
+                //searchui.CurrentFilter = (!searchui.IsCurrentFilterSelected ? )
+
+                //Get Search Filter
+                srch.SearchFilter = GetSearchFilter(srch.FieldMaper, searchDataSource, searchui.FilterCategories);
+
+                srch.SearchFilter.SearchQuestions = searchui.SearchQuestions;
+
+                srch.SearchFilter.IsHotJob = searchui.IsHotJob;
+
+                return srch;
             }
-            srch.SearchResult = filterItemResults;
-
-            //Get Field Mapper
-            srch.FieldMaper = fieldMapper;
-
-            //searchui.CurrentFilter = (!searchui.IsCurrentFilterSelected ? )
-
-            //Get Search Filter
-            srch.SearchFilter = GetSearchFilter(srch.FieldMaper, searchDataSource, searchui.FilterCategories);
-
-            srch.SearchFilter.SearchQuestions = searchui.SearchQuestions;
-
-            srch.SearchFilter.IsHotJob = searchui.IsHotJob;
-
-            return srch;
+            catch(Exception ex)
+            {
+                return new Search();
+            }
         }
 
         public List<FilterCategory> GetLeftFilter(FieldMap fieldMapper, List<EnvelopeUnitPacketPayloadResultSetJob> jobs, List<FilterCategory> filterCats, bool isHotJob)
         {
-            //Get Left Filter
-            List<FilterCategory> lstFc = new List<FilterCategory>();
-            foreach (FieldMapFilterQuestion field in fieldMapper.SearchFilter)
+            try
             {
-                FilterCategory fc = new FilterCategory();
-                fc.Title = field.Title;
-                fc.Id = field.Id;
-
-                if (isHotJob)
-                    jobs = jobs.Where(z => z.HotJob.ToLower() == "yes").ToList();
-
-                var fItems = jobs
-                    .SelectMany(x => x.Question.Where(q1 => q1.Id == field.Id).Select(y => new { qid = y.Id, qval = y.Value }))
-                    .GroupBy(a => new
-                    {
-                        id = a.qid,
-                        value = a.qval
-                    })
-                    .Select(a => new
-                    {
-                        questionid = a.Key.id,
-                        filterTitle = a.Key.value,
-                        FilterItemResultCount = a.Count()
-                    });
-
-                // var fItems = (data.Unit.Packet.Payload.ResultSet.Jobs.GroupBy(j => j.Location).Select(lis => new { FilterItemTitle = lis.Key, FilterItemResultCount = lis.Count() }));
-
-                List<FilterItem> lstFi = new List<FilterItem>();
-                foreach (var i in fItems.ToList())
+                //Get Left Filter
+                List<FilterCategory> lstFc = new List<FilterCategory>();
+                foreach (FieldMapFilterQuestion field in fieldMapper.SearchFilter)
                 {
-                    FilterItem fi = new FilterItem();
-                    fi.FilterItemTitle = i.filterTitle;
-                    fi.FilterItemResultCount = i.FilterItemResultCount;
+                    FilterCategory fc = new FilterCategory();
+                    fc.Title = field.Title;
+                    fc.Id = field.Id;
 
-                    if (filterCats != null)
-                        fi.IsSelected = ((filterCats.Where(x => x.Id == fc.Id)
-                                                .Select(y => y.FilterItems
-                                                .Where(z => z.FilterItemTitle == fi.FilterItemTitle && z.IsSelected)))
-                                                .FirstOrDefault().Count() > 0);
+                    if (isHotJob)
+                        jobs = jobs.Where(z => z.HotJob.ToLower() == "yes").ToList();
 
-                    lstFi.Add(fi);
+                    var fItems = jobs
+                        .SelectMany(x => x.Question.Where(q1 => q1.Id == field.Id).Select(y => new { qid = y.Id, qval = y.Value }))
+                        .GroupBy(a => new
+                        {
+                            id = a.qid,
+                            value = a.qval
+                        })
+                        .Select(a => new
+                        {
+                            questionid = a.Key.id,
+                            filterTitle = a.Key.value,
+                            FilterItemResultCount = a.Count()
+                        });
+
+                    // var fItems = (data.Unit.Packet.Payload.ResultSet.Jobs.GroupBy(j => j.Location).Select(lis => new { FilterItemTitle = lis.Key, FilterItemResultCount = lis.Count() }));
+
+                    List<FilterItem> lstFi = new List<FilterItem>();
+                    foreach (var i in fItems.ToList())
+                    {
+                        FilterItem fi = new FilterItem();
+                        fi.FilterItemTitle = i.filterTitle;
+                        fi.FilterItemResultCount = i.FilterItemResultCount;
+
+                        if (filterCats != null)
+                            fi.IsSelected = ((filterCats.Where(x => x.Id == fc.Id)
+                                                    .Select(y => y.FilterItems
+                                                    .Where(z => z.FilterItemTitle == fi.FilterItemTitle && z.IsSelected)))
+                                                    .FirstOrDefault().Count() > 0);
+
+                        lstFi.Add(fi);
+                    }
+                    fc.FilterItems = lstFi;
+
+                    lstFc.Add(fc);
                 }
-                fc.FilterItems = lstFi;
 
-                lstFc.Add(fc);
+                return lstFc;
             }
-           
-            return lstFc;
+            catch(Exception ex)
+            {
+                return new List<FilterCategory>();
+            }
         }
 
         public SearchUi GetSearchFilter(FieldMap fieldMapper, List<EnvelopeUnitPacketPayloadResultSetJob> jobs, List<FilterCategory> filterCats)
@@ -291,58 +314,72 @@ namespace KensuiteAPI.Areas.BrassRing.Jobs.Search
             }
         }
 
-        public Search GetSearchkeyword()
+        public Search GetSearchkeyword(string cId)
         {
-            Search srch = new Search();
-            List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData();
-            IEnumerable<EnvelopeUnitPacketPayloadResultSetJob> res = searchDataSource;
-
-            FieldMap fieldMapper = GetFieldMapper();
-            //Get Field Mapper
-            SearchUi uiObj = new SearchUi();
-            List<Question> lstSearchKeyQuestions = new List<Question>();
-            List<location> location = new List<Jobs.Search.location>();
-            foreach (FieldMapKeywordQuestion field in fieldMapper.SearchKeyword)
+            try
             {
-                Question q = new Question();
-                q.Id = field.Id;
-                q.Title = field.Title;
-                q.Type = field.Type;
-                q.Watermark = field.Watermark;
-                q.IsSearchAll = field.IsSearchAll;
-                lstSearchKeyQuestions.Add(q);
-                if (field.Type == "singleselect")
+                Search srch = new Search();
+                List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData(cId);
+                IEnumerable<EnvelopeUnitPacketPayloadResultSetJob> res = searchDataSource;
+
+                FieldMap fieldMapper = GetFieldMapper(cId);
+                //Get Field Mapper
+                SearchUi uiObj = new SearchUi();
+                List<Question> lstSearchKeyQuestions = new List<Question>();
+                List<location> location = new List<Jobs.Search.location>();
+                foreach (FieldMapKeywordQuestion field in fieldMapper.SearchKeyword)
                 {
+                    Question q = new Question();
+                    q.Id = field.Id;
+                    q.Title = field.Title;
+                    q.Type = field.Type;
+                    q.Watermark = field.Watermark;
+                    q.IsSearchAll = field.IsSearchAll;
+                    lstSearchKeyQuestions.Add(q);
+                    if (field.Type == "singleselect")
+                    {
 
-                    var data = res.Select(x => x.Question).ToList();
+                        var data = res.Select(x => x.Question).ToList();
+                    }
+
                 }
+                uiObj.SearchQuestions = lstSearchKeyQuestions;
 
+
+
+
+
+                srch.SearchFilter = uiObj;
+                return srch;
             }
-            uiObj.SearchQuestions = lstSearchKeyQuestions;
-
-
-
-
-
-            srch.SearchFilter = uiObj;
-            return srch;
+            catch(Exception ex)
+            {
+                return new Search();
+            }
         }
 
-        public SearchUi GetHotJobs()
+        public SearchUi GetHotJobs(string cId)
         {
-            SearchUi uiObj = new SearchUi();
+            try
+            {
+                SearchUi uiObj = new SearchUi();
 
-            FieldMap fieldMapper = GetFieldMapper();
-            List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData();
-            IEnumerable<EnvelopeUnitPacketPayloadResultSetJob> res = searchDataSource;
-            List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults = res.Where(y => y.HotJob.ToLower() == "yes").ToList();
-            List<FilterCategory> obj = null;
-            List<FilterCategory> lstFc = GetLeftFilter(fieldMapper, filterItemResults, obj, false);
-            uiObj.FilterCategories = lstFc;
+                FieldMap fieldMapper = GetFieldMapper(cId);
+                List<EnvelopeUnitPacketPayloadResultSetJob> searchDataSource = GetAllData(cId);
+                IEnumerable<EnvelopeUnitPacketPayloadResultSetJob> res = searchDataSource;
+                List<EnvelopeUnitPacketPayloadResultSetJob> filterItemResults = res.Where(y => y.HotJob.ToLower() == "yes").ToList();
+                List<FilterCategory> obj = null;
+                List<FilterCategory> lstFc = GetLeftFilter(fieldMapper, filterItemResults, obj, false);
+                uiObj.FilterCategories = lstFc;
 
-            List<FilterCategory> featuredLstFc = GetLeftFilter(fieldMapper, filterItemResults, obj, true);
-            uiObj.FeaturedFilterCategories = featuredLstFc;
-            return uiObj;
+                List<FilterCategory> featuredLstFc = GetLeftFilter(fieldMapper, filterItemResults, obj, true);
+                uiObj.FeaturedFilterCategories = featuredLstFc;
+                return uiObj;
+            }
+            catch(Exception ex)
+            {
+                return new SearchUi();
+            }
         }
 
     }

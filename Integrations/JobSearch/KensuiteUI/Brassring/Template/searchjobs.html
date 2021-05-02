@@ -18,7 +18,7 @@
     <script src="Scripts/angular-animation.js"></script>
     <script src="Scripts/angular-sanitize.js"></script>
     <script src="angular/angular_module.js"></script>
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 
     <!-- <script data-require="angular-ui-bootstrap@0.3.0" data-semver="0.3.0"
@@ -151,7 +151,7 @@
                 <div id="container">
                     <div id="accordion">
                         <diV class="card my-2 text-center">
-                            <div class="card-header" style="background-color:#0592ba;">
+                            <div class="card-header" style="background-color:#007bff">
                                 <span class="card-title text-light">
                                     <h5> FILTER RESULTS</h5>
                                 </span>
@@ -161,7 +161,7 @@
                             ng-repeat="filter in ($scope.Searchfilter.IsHotJob?Searchfilter.FilterCategories:Searchfilter.FilterCategories)">
 
 
-                            <div class="collapsed card-header" style="background-color:#0592ba;"
+                            <div class="collapsed card-header" style="background-color:#007bff;"
                                 ng-click="collapseIt($index)" data-toggle="collapse"
                                 href="#collapse{{filter.Title.replace(' ','')}}">
                                 <a class="card-link ">
@@ -198,7 +198,7 @@
                             </div>
                         </div>
                         <diV class="card my-2 text-center" ng-click="clearFilter()">
-                            <button class=" btn btn-info">
+                            <button class=" btn btn-primary">
                                 <h5> Clear Filter</h5>
                             </button>
                         </diV>

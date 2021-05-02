@@ -14,11 +14,11 @@ var app = angular
         $scope.contryOption = '';
         $scope.showfeaturedJobs = false;
         //true for server, false for local 
-        $scope.isNotPerf = false;
-        $scope.productionserver = false;
-        $scope.apiBase = 'https://kensuitejobsearchapi.warmcall.com';
-        //$scope.apiBase = 'http://localhost:54920';
-
+        $scope.isNotPerf = true;
+        $scope.productionserver = true;
+        //$scope.apiBase = 'https://kensuitejobsearchapi.warmcall.com';
+        $scope.apiBase = 'http://localhost:54920';
+        $scope.clientId = 25253;
 
 
 
@@ -168,7 +168,7 @@ var app = angular
         $scope.getSearchKeywords = function () {
             //Search Filter data
             //https://kensuitejobsearchapi.warmcall.com/api/default/
-            $http.get($scope.apiBase + '/api/jobs/GetSearchKeyword')
+            $http.get($scope.apiBase + '/api/jobs/GetSearchKeyword?cId=' + $scope.clientId)
                 .then(function (response) {
                     var data = response.data;
                     // console.log(data);
@@ -188,7 +188,7 @@ var app = angular
         }
 
         $scope.getFeturedJobs = function () {
-            $http.get($scope.apiBase + '/api/jobs/GetFeturedJobs')
+            $http.get($scope.apiBase + '/api/jobs/GetFeturedJobs?cId=' + $scope.clientId)
                 .then(function (response) {
                     var data = response.data;
                     $scope.Searchfilter.FeaturedFilterCategories = data.FeaturedFilterCategories;
@@ -198,7 +198,7 @@ var app = angular
         }
 
         $scope.getSearchResults = function (SearchUi) {
-            $http.post($scope.apiBase + '/api/jobs/GetAllResult', SearchUi)
+            $http.post($scope.apiBase + '/api/jobs/GetAllResult?cId=' + $scope.clientId, SearchUi)
 
                 .then(function (response) {
                     $scope.Result = response.data;
@@ -232,7 +232,6 @@ var app = angular
         $scope.SearchJob = function (filter) {
             //All Data
             // console.log(filter+'filter');
-
             $scope.Searchfilter.SearchQuestions = (filter == null ? $scope.ctrlSearchQuestions : $scope.Searchfilter.SearchQuestions);
             $scope.Searchfilter.IsHotJob = false;
 
@@ -265,7 +264,7 @@ var app = angular
                 $scope.Locationdata = response.data.SearchLocation;
             });
 
-            $http.get($scope.apiBase + '/api/jobs/GetFeturedJobs')
+            $http.get($scope.apiBase + '/api/jobs/GetFeturedJobs?cId=' + $scope.clientId)
                 // $http.get('https://kensuitejobsearchapi.warmcall.com/api/default/GetSearchKeyword')
                 .then(function (response) {
                     var data = response.data;
@@ -278,7 +277,7 @@ var app = angular
         }
 
         $scope.getallJobs = function () {
-            $http.get($scope.apiBase + '/api/jobs/GetAllResult').then(function (response) {
+            $http.get($scope.apiBase + '/api/jobs/GetAllResult?cId=' + $scope.clientId).then(function (response) {
                 $scope.alldata = response.data;
             });
         }

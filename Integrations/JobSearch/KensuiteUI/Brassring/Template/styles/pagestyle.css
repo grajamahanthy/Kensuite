@@ -207,3 +207,6 @@ input[type="checkbox"] {
     border-radius: 0;
     box-shadow: none;
 }
+.fa-minus:before{
+    content: "\f068" !important;
+}
